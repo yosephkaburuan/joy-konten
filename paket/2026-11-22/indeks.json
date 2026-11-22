@@ -1,0 +1,37 @@
+[
+ {
+  "code": "GOTO",
+  "dir": "paket/baru/2026-10-30_GOTO",
+  "date": "2026-10-30"
+ },
+ {
+  "code": "CPIN",
+  "dir": "paket/baru/2026-10-30_CPIN",
+  "date": "2026-10-30"
+ },
+ {
+  "code": "DSSA",
+  "dir": "paket/baru/2026-10-30_DSSA",
+  "date": "2026-10-30"
+ },
+ {
+  "code": "GGRM",
+  "dir": "paket/baru/2026-10-30_GGRM",
+  "date": "2026-10-30"
+ },
+ {
+  "code": "UNTR",
+  "dir": "paket/baru/2026-10-30_UNTR",
+  "date": "2026-10-30"
+ },
+ {
+  "code": "EXCL",
+  "dir": "paket/baru/2026-10-30_EXCL",
+  "date": "2026-10-30"
+ },
+ {
+  "code": "ENRG",
+  "dir": "paket/baru/2026-10-30_ENRG",
+  "date": "2026-10-30"
+ }
+]
