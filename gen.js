@@ -3,17 +3,28 @@
    Pakai:  node gen.js BBCA,BBRI,...   atau   node gen.js --auto 7   (pilih sendiri, hindari yang sudah tayang)  */
 const fs=require('fs'),path=require('path');
 const {chromium}=require('playwright');
-const SITE=process.env.SITE||process.env.SITE_DIR||'/home/claude/joy-site';   /* folder lokal atau https://saham.ijoy.co.id/ */
+const SITES=(process.env.SITE||process.env.SITE_DIR||'/home/claude/joy-site').split(',').map(x=>x.trim()).filter(Boolean);   /* folder lokal atau alamat website; boleh beberapa, dipisah koma (dicoba berurutan) */
+if(SITES.some(x=>/saham\.ijoy\.co\.id/.test(x))&&!SITES.some(x=>/pages\.dev/.test(x)))SITES.push('https://joy-capital-radar.pages.dev/');   /* cadangan bila alamat utama menolak server GitHub */
 const OUT=process.env.OUT_DIR||'/home/claude/fbpack/out';
 const STATE=process.env.STATE_FILE||path.join(path.dirname(OUT),'posted.json');
 const BASE_URL='https://saham.ijoy.co.id/';
 const PAGE_ID=process.env.FB_PAGE||'analisasahamjoy';
-const IS_URL=/^https?:\/\//.test(SITE);
+const UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
 async function readBin(rel){
-  try{
-    if(IS_URL){const r=await fetch(SITE.replace(/\/?$/,'/')+rel,{headers:{'cache-control':'no-cache'}});if(!r.ok)return null;return Buffer.from(await r.arrayBuffer());}
-    const f=path.join(SITE,rel);return fs.existsSync(f)?fs.readFileSync(f):null;
-  }catch(e){return null;}
+  for(const site of SITES){
+    try{
+      if(/^https?:\/\//.test(site)){
+        const url=site.replace(/\/?$/,'/')+rel;
+        const r=await fetch(url,{headers:{'user-agent':UA,'accept':'*/*','cache-control':'no-cache'}});
+        if(r.ok)return Buffer.from(await r.arrayBuffer());
+        console.error('[JOY] gagal membaca '+url+' -> HTTP '+r.status);
+      }else{
+        const f=path.join(site,rel);if(fs.existsSync(f))return fs.readFileSync(f);
+        console.error('[JOY] file tidak ada: '+f);
+      }
+    }catch(e){console.error('[JOY] gagal membaca '+rel+' dari '+site+' -> '+(e.cause&&e.cause.code||e.message));}
+  }
+  return null;
 }
 async function readJSON(rel){const b=await readBin(rel);if(!b)throw new Error('data tidak terbaca: '+rel);return JSON.parse(b.toString('utf8'));}
 const MON=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
@@ -82,7 +93,7 @@ function spark(x,W,H){
 const chg=v=>Math.abs(v)<0.05?'0,0':(v>0?'+':'−')+nf(Math.abs(v));
 function html(x,H,logo,brand,sh){
   const tall=H>1500,seg=[['Asing',x.f,'#c6f05a','#0f2f25'],['Ritel lokal',x.r,'#f2b84b','#2a1c00'],['Lembaga lokal',x.l,'#7fd1b9','#06241c']];
-  return `<!doctype html><meta charset="utf-8"><style>
+  return `<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=block"><style>
 *{box-sizing:border-box;margin:0}body{width:1080px;height:${H}px;background:#0f2f25;color:#f4f1e6;font-family:Inter,'DejaVu Sans',sans-serif;overflow:hidden}
 .c{height:100%;padding:${tall?'230px 60px 330px':'48px 60px 44px'};display:flex;flex-direction:column;gap:${tall?44:26}px}
 .top{display:flex;align-items:center;justify-content:space-between;color:#9db8ab;font-size:28px;font-weight:600}.top img{height:54px}
@@ -112,7 +123,7 @@ async function render(browser,x,outDir){
     // sesuaikan tinggi grafik sampai catatan sumber muat penuh (margin bawah aman)
     let sh=H>1500?300:230;
     for(let i=0;i<14;i++){
-      await p.setContent(html(x,H,logo,brand,sh),{waitUntil:'load'});await p.waitForTimeout(120);
+      await p.setContent(html(x,H,logo,brand,sh),{waitUntil:'load',timeout:30000});await p.evaluate(()=>document.fonts&&document.fonts.ready).catch(()=>{});await p.waitForTimeout(150);
       const bottom=await p.evaluate(()=>document.querySelector('.ft').getBoundingClientRect().bottom);
       if(bottom<=H-(H>1500?330:44)+0.5||sh<=110)break;
       sh-=12;
