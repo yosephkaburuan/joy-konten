@@ -1,0 +1,38 @@
+name: Konten Facebook mingguan
+on:
+  schedule:
+    - cron: '0 0 * * 1'      # tiap Senin 07.00 WIB (00.00 UTC)
+  workflow_dispatch: {}      # tombol "Run workflow" untuk uji manual
+permissions:
+  contents: write
+  issues: write
+jobs:
+  buat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Pasang Playwright
+        run: npm install playwright && npx playwright install --with-deps chromium
+      - name: Buat konten dari data terbaru website
+        env:
+          SITE: https://saham.ijoy.co.id/
+          OUT_DIR: paket/baru
+          STATE_FILE: posted.json
+          FB_PAGE: analisasahamjoy
+        run: node gen.js --auto 7 --mark
+      - name: Simpan paket dan kirim pemberitahuan
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          D=$(date -u +%Y-%m-%d)
+          mkdir -p paket && mv paket/baru "paket/$D"
+          git config user.name "joy-konten"
+          git config user.email "joy-konten@users.noreply.github.com"
+          git add paket posted.json
+          git commit -m "Paket konten $D" || true
+          git push
+          { echo "Paket konten siap. Gambar dan teks ada di: https://github.com/${{ github.repository }}/tree/main/paket/$D"; echo; cat "paket/$D/ringkasan.md"; } > isi.md
+          gh issue create --title "Paket konten Facebook $D" --body-file isi.md

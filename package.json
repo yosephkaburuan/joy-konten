@@ -1,0 +1,1 @@
+{"name":"joy-konten-fb","private":true,"version":"1.0.0","description":"Pembuat konten Facebook JOY dari data KSEI","scripts":{"buat":"node gen.js --auto 7 --mark"},"dependencies":{"playwright":"^1"}}
