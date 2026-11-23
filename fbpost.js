@@ -11,6 +11,7 @@ const VER=process.env.FB_API_VERSION||'v21.0';
 const GAP=+process.env.JEDA_MENIT||25;             /* jarak minimal antar kiriman */
 const MAXDAY=+process.env.MAKS_PER_HARI||12;       /* batas kiriman per hari */
 const MAXAGE=+process.env.MAX_UMUR_HARI||4;        /* kiriman lebih tua dari ini dibuang dari antrean */
+const AGE={inv:45,mv:7};                           /* batas umur khusus: data KSEI bulanan (inv) dan perubahan ≥5% (mv) lebih awet dari data harian */
 const JAM=(process.env.JAM_TAYANG||'7-22').split('-').map(Number);   /* hanya tayang pada jam WIB ini */
 const UJI=process.argv.includes('--uji');
 const G=`https://graph.facebook.com/${VER}`;
@@ -48,7 +49,7 @@ async function tayang(item){
 (async()=>{
   const q=load(),now=new Date();
   /* buang yang sudah basi */
-  q.forEach(x=>{if(x.status==='baru'&&(now-Date.parse(x.iso+'T00:00:00+07:00'))/864e5>MAXAGE){x.status='kedaluwarsa';}});
+  q.forEach(x=>{if(x.status==='baru'&&(now-Date.parse(x.iso+'T00:00:00+07:00'))/864e5>(AGE[x.key]||MAXAGE)){x.status='kedaluwarsa';}});
   const baru=q.filter(x=>x.status==='baru');
   if(!baru.length){console.log('antrean kosong, tidak ada yang ditayangkan');save(q);return;}
   if(!PAGE||!TOKEN){if(!UJI){console.log('FB_PAGE_ID / FB_PAGE_TOKEN belum dipasang: '+baru.length+' kiriman menunggu di antrean (belum tayang)');return;}}
