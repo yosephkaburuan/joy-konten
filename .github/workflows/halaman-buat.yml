@@ -29,7 +29,7 @@ jobs:
           pip install beautifulsoup4 lxml
           python3 buat_bank_edukasi.py https://saham.ijoy.co.id konten/bank-edukasi.json || echo "bank edukasi lama dipakai"
       - name: Pasang Playwright
-        run: npm install playwright && npx playwright install --with-deps chromium
+        run: npm install --no-save playwright && npx playwright install --with-deps chromium
       - name: Buat kiriman hari ini
         run: |
           if [ "${{ github.event.inputs.ulang }}" = "ya" ]; then node buat.js --ulang; else node buat.js; fi
@@ -40,4 +40,4 @@ jobs:
           git config user.email "joy-konten@users.noreply.github.com"
           git add -A halaman antrian-halaman.json status-halaman.json konten 2>/dev/null || true
           git commit -m "Halaman: kiriman harian $(date -u +%Y-%m-%d)" || echo "tidak ada perubahan"
-          for i in 1 2 3; do git pull --rebase origin main && git push && break || sleep 5; done
+          for i in 1 2 3; do git pull --rebase --autostash origin main && git push && break || sleep 5; done
