@@ -1,7 +1,7 @@
 name: Halaman JOY - tayangkan ke Facebook
 on:
   schedule:
-    - cron: '2,32 0-14 * * *'   # tiap 30 menit, 07.02 sampai 21.32 WIB
+    - cron: '11,41 0-14 * * *'   # tiap 30 menit, 07.11 sampai 21.41 WIB
   workflow_dispatch:
 permissions:
   contents: write
