@@ -60,6 +60,44 @@ const muat = async nama => {
   return ambilJson(`${SITE}/${nama}`);
 };
 const DISC = 'Data dan edukasi, bukan ajakan membeli atau menjual.';
+const pct2 = p => (p > 0.0049 ? '+' : p < -0.0049 ? '−' : '') + n(Math.abs(p), 2) + '%';
+
+/* ---------- grup konglomerasi (daftar sama dengan Konglo Report di website) ---------- */
+/* Hanya grup yang ada di daftar ini yang dipakai, dan nama perorangan tidak ditampilkan. Grup baru di website tidak dipakai sebelum ditambahkan di sini. */
+const NAMA_GRUP = { 'Barito Group': 'Grup Barito', 'Salim Group': 'Grup Salim', 'Bakrie Group': 'Grup Bakrie', 'Sinar Mas': 'Sinar Mas', 'Djarum / Hartono': 'Grup Djarum', 'Astra Group': 'Grup Astra', 'Lippo Group': 'Grup Lippo', 'MNC Group': 'Grup MNC', 'CT Corp': 'CT Corp', 'Mayapada / Tahir': 'Grup Mayapada', 'Saratoga': 'Saratoga', 'Adaro / Thohir': 'Grup Adaro', 'Triputra / TP Rachmat': 'Grup Triputra', 'Emtek Group': 'Grup Emtek', 'Panin Group': 'Grup Panin', 'Agung Sedayu / Aguan': 'Agung Sedayu', 'Artha Graha / Tomy Winata': 'Artha Graha', 'PAM Group': 'PAM Group', 'Hashim / Arsari': 'Arsari', 'Haji Isam / Jhonlin': 'Jhonlin', 'Rajawali Corpora': 'Rajawali Corpora', 'SSI / Suriadjaja': 'SSI', 'Kresna': 'Kresna' };
+const muatGrup = async () => {
+  try {
+    const txt = DATA ? fs.readFileSync(path.join(DATA, 'group-flow.js'), 'utf8') : await (await fetch(`${SITE}/group-flow.js`, { headers: { 'user-agent': 'joy-konten/1.0' } })).text();
+    const arr = (txt.match(/window\.JOY_GROUPS=(\[[\s\S]*?\]);/) || [])[1];
+    if (!arr) throw new Error('daftar grup tidak ditemukan');
+    const out = [];
+    for (const m of arr.matchAll(/\{name:'([^']+)',codes:\[([^\]]*)\]/g)) out.push({ name: m[1], codes: [...m[2].matchAll(/'([A-Z0-9]+)'/g)].map(x => x[1]) });
+    if (out.length < 10) throw new Error('daftar grup terlalu sedikit');
+    const asing = out.filter(g => !NAMA_GRUP[g.name]).map(g => g.name);
+    console.log(`data grup: ${out.length} grup dari group-flow.js` + (asing.length ? `; tidak dipakai (belum ada di NAMA_GRUP): ${asing.join(', ')}` : ''));
+    return out;
+  } catch (e) { console.log('data grup tidak bisa dipakai: ' + e.message); return []; }
+};
+
+/* ---------- halaman Harian di website (/harian/TANGGAL): dipakai sebagai tautan dan sumber angka IHSG ---------- */
+const entitas = s => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'").replace(/&#(\d+);/g, (m, c) => String.fromCharCode(+c));
+const ambilHarian = async iso => {
+  try {
+    let html;
+    if (DATA) { const f = path.join(DATA, `harian-${iso}.html`); if (!fs.existsSync(f)) throw new Error('berkas uji tidak ada'); html = fs.readFileSync(f, 'utf8'); }
+    else { const r = await fetch(`${SITE}/harian/${iso}`, { headers: { 'user-agent': 'joy-konten/1.0' } }); if (!r.ok) throw new Error('HTTP ' + r.status); html = await r.text(); }
+    const judulMentah = entitas(((html.match(/<title[^>]*>([^<]*)<\/title>/i) || [])[1] || '').trim());
+    if (!judulMentah.includes('Ringkasan Saham ' + tglPanjang(iso))) throw new Error('halaman belum untuk tanggal ' + iso);
+    let desk = '';
+    for (const t of html.match(/<meta\b[^>]*>/gi) || []) if (/name\s*=\s*["']description["']/i.test(t)) { const c = t.match(/content\s*=\s*"([^"]*)"|content\s*=\s*'([^']*)'/i); if (c) desk = entitas(c[1] != null ? c[1] : c[2] || ''); }
+    const mi = desk.match(/IHSG\s+(naik|turun|menguat|melemah)\s+(\d+(?:[.,]\d+)*)%\s+ke\s+(\d+(?:[.,]\d+)*)/i);
+    const ihsg = mi ? { kata: /^(naik|menguat)$/i.test(mi[1]) ? 'naik' : 'turun', pctTxt: mi[2], tanda: /^(naik|menguat)$/i.test(mi[1]) ? '+' : '−', lvl: mi[3] } : null;
+    const teks = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+    const mc = teks.match(/(\d[\d.]*)\s+saham naik vs\s+(\d[\d.]*)\s+turun/i);
+    console.log(`halaman harian ${iso}: ada` + (ihsg ? `, IHSG ${ihsg.tanda}${ihsg.pctTxt}% di ${ihsg.lvl}` : ', angka IHSG tidak terbaca') + (mc ? `, ${mc[1]} naik vs ${mc[2]} turun` : ''));
+    return { ihsg, naikTxt: mc ? mc[1] : '', turunTxt: mc ? mc[2] : '' };
+  } catch (e) { console.log(`halaman harian ${iso}: tidak dipakai (${e.message})`); return null; }
+};
 
 /* ---------- ringkasan pasar dari data harian JOY ---------- */
 const hsh = s => { let h = 2166136261; for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0; };
@@ -100,11 +138,14 @@ function varianPasar(P) {
   {
     const naik = aktif.filter(x => x.pct > 0).length, turun = aktif.filter(x => x.pct < 0).length, tetap = aktif.length - naik - turun;
     const nilai = aktif.reduce((a, x) => a + x.value, 0), asing = aktif.reduce((a, x) => a + x.asing, 0);
+    const ih = P.harian && P.harian.ihsg;
+    if (P.harian && P.harian.naikTxt && (P.harian.naikTxt.replace(/\./g, '') !== String(naik) || P.harian.turunTxt.replace(/\./g, '') !== String(turun))) console.log(`PERHATIAN: hitungan naik/turun beda dengan halaman harian (bot ${naik}/${turun}, halaman ${P.harian.naikTxt}/${P.harian.turunTxt})`);
     if (aktif.length > 300) V.push({
       id: 'gambaran', judul: 'Gambaran Pasar Hari Ini', emoji: '📊', tagar: '#SahamIndonesia #BEI #PasarModal',
-      intro: `Dari ${n(aktif.length)} saham yang diperdagangkan pada penutupan ${tgl(iso)}: ${n(naik)} naik, ${n(turun)} turun, ${n(tetap)} tidak berubah. Total nilai transaksi ${besar(nilai)}. Asing ${asing >= 0 ? 'net beli' : 'net jual'} ${besar(Math.abs(asing))} (estimasi).`,
-      daftar: [], rows: [{ k: n(naik), n: 'saham naik', v: '', s: '' }, { k: n(turun), n: 'saham turun', v: '', s: '' }, { k: n(tetap), n: 'tidak berubah', v: '', s: '' }, { k: besar(nilai), n: 'total nilai transaksi', v: '', s: '' }, { k: besar(Math.abs(asing)), n: asing >= 0 ? 'net beli asing (estimasi)' : 'net jual asing (estimasi)', v: '', s: '' }],
-      artinya: 'jumlah saham naik dan turun menunjukkan seberapa luas pergerakan pasar. Indeks bisa naik walau lebih banyak saham turun, bila saham besar yang naik. Net asing dihitung dari lembar net × harga penutupan, sehingga hanya perkiraan.', kode: ''
+      intro: `${ih ? `IHSG ditutup ${ih.kata} ${ih.pctTxt}% di ${ih.lvl} pada ${tgl(iso)}. ` : ''}Dari ${n(aktif.length)} saham yang diperdagangkan${ih ? '' : ' pada penutupan ' + tgl(iso)}: ${n(naik)} naik, ${n(turun)} turun, ${n(tetap)} tidak berubah. Total nilai transaksi ${besar(nilai)}. Asing ${asing >= 0 ? 'net beli' : 'net jual'} ${besar(Math.abs(asing))} (estimasi).`,
+      daftar: [], rows: [...(ih ? [{ k: 'IHSG', n: `ditutup di ${ih.lvl}`, v: `${ih.tanda}${ih.pctTxt}%`, s: '' }] : []), { k: n(naik), n: 'saham naik', v: '', s: '' }, { k: n(turun), n: 'saham turun', v: '', s: '' }, { k: n(tetap), n: 'tidak berubah', v: '', s: '' }, { k: besar(nilai), n: 'total nilai transaksi', v: '', s: '' }, { k: besar(Math.abs(asing)), n: asing >= 0 ? 'net beli asing (estimasi)' : 'net jual asing (estimasi)', v: '', s: '' }],
+      artinya: 'jumlah saham naik dan turun menunjukkan seberapa luas pergerakan pasar. Indeks bisa naik walau lebih banyak saham turun, bila saham besar yang naik. Net asing dihitung dari lembar net × harga penutupan, sehingga hanya perkiraan.', kode: '',
+      ...(ih ? { sumber: 'data bursa (Ringkasan Saham dan Ringkasan Indeks BEI) diolah JOY', sumberK: 'data bursa' } : {})
     });
   }
   const mk = (id, judul, emoji, tagar, intro, arr, ekstra, artinya, minimal = 3) => {
@@ -141,6 +182,27 @@ function varianPasar(P) {
         daftar: pilih.map((x, i) => `${i < 3 ? '▲' : '▼'} ${x.kode} · ${pct(x.pct)} · nilai transaksi ${besar(x.value)}`).join('\n'),
         rows: pilih.map(x => ({ k: x.kode, n: x.nama, v: pct(x.pct), s: `nilai ${besar(x.value)}` })),
         artinya: 'angka sektor dihitung JOY dari rata-rata perubahan harga saham likuid di sektor itu, ditimbang nilai transaksi. Ini ukuran JOY, bukan indeks sektoral resmi BEI.' });
+    }
+  }
+  /* 7b. grup konglomerasi: rata-rata perubahan harga saham anggota (bobot sama), cara hitung sama dengan Konglo Report di website. Minimal 3 saham punya data hari itu; nama perorangan tidak dipakai. */
+  if (P.G && P.G.length) {
+    const byK = {}; R.forEach(x => { if (x.close > 0) byK[x.kode] = x; });
+    const arr = [];
+    P.G.forEach(g => {
+      const nm = NAMA_GRUP[g.name]; if (!nm) return;
+      const m = g.codes.map(c => byK[c]).filter(Boolean); if (m.length < 3) return;
+      const terbaik = m.slice().sort((a, b) => b.pct - a.pct)[0];
+      arr.push({ nama: nm, jml: m.length, pct: m.reduce((s, x) => s + x.pct, 0) / m.length, terbaik });
+    });
+    arr.sort((a, b) => b.pct - a.pct);
+    if (arr.length >= 8) {
+      const pilih = arr.slice(0, 3).concat(arr.slice(-3));
+      V.push({ id: 'konglo', judul: 'Konglo Terkuat dan Terlemah', h1: 60, emoji: '🏢', tagar: '#Konglomerasi #SahamIndonesia #BEI', kode: '',
+        intro: `Perubahan harga rata-rata saham anggota tiap grup konglomerasi pada penutupan ${tgl(iso)}: tiga grup tertinggi dan tiga terendah dari ${arr.length} grup yang punya minimal 3 saham.`,
+        daftar: pilih.map((x, i) => `${i < 3 ? '▲' : '▼'} ${x.nama} · ${pct2(x.pct)} (${x.jml} saham, terbaik ${x.terbaik.kode} ${pct2(x.terbaik.pct)})`).join('\n'),
+        rows: pilih.map(x => ({ k: x.nama, n: `${x.jml} saham · terbaik ${x.terbaik.kode} ${pct2(x.terbaik.pct)}`, v: pct2(x.pct), s: '' })),
+        artinya: 'angka grup = rata-rata sederhana perubahan harga saham anggotanya (bobot sama), bukan indeks resmi. Pengelompokan berdasarkan afiliasi yang diberitakan, bukan pernyataan hukum tentang pengendalian.',
+        sumber: 'data bursa (Ringkasan Saham BEI) dan daftar grup konglomerasi JOY, diolah JOY', sumberK: 'data bursa dan daftar grup JOY' });
     }
   }
   /* 8. lonjakan transaksi */
@@ -214,10 +276,12 @@ function varianPasar(P) {
       const v = V[V.length - 1]; if (v && v.id === 'pemegang-' + kunci) { v.sumber = 'laporan kepemilikan pemegang di atas 5% (data JOY) dan harga penutupan BEI, diolah JOY'; v.sumberK = 'laporan kepemilikan dan data bursa'; }
     });
   }
+  /* ringkasan se-pasar yang isinya sama dengan halaman Harian di website: komentar pertamanya menaut ke halaman itu */
+  if (P.harian) V.forEach(v => { if (['gambaran', 'aktif', 'naik', 'turun', 'asing-beli', 'asing-jual', 'sektor', 'konglo', 'lonjakan', 'beruntun'].includes(v.id)) v.harian = true; });
   return V;
 }
 function captionPasar(v, iso) {
-  return [`${v.emoji} ${v.judul} · ${tgl(iso)}`, '', v.intro, v.daftar ? v.daftar : '', '', `Artinya: ${v.artinya}`, '', 'Detail tiap saham ada di komentar pertama 👇', '', v.tagar, '',
+  return [`${v.emoji} ${v.judul} · ${tgl(iso)}`, '', v.intro, v.daftar ? v.daftar : '', '', `Artinya: ${v.artinya}`, '', (v.harian ? 'Ringkasan lengkap hari bursa ini ada di komentar pertama 👇' : 'Detail tiap saham ada di komentar pertama 👇'), '', v.tagar, '',
     `Sumber: ${v.sumber || 'data bursa (Ringkasan Saham BEI) diolah JOY'}. Data per ${tglP(iso)}. ${DISC}`].filter((x, i, a) => !(x === '' && a[i - 1] === '')).join('\n').replace(/\n\n\n+/g, '\n\n');
 }
 
@@ -262,7 +326,7 @@ function kartuHTML(k) {
   return `<!doctype html><html><head><meta charset="utf-8"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
 <style>*{box-sizing:border-box;margin:0}body{width:1080px;height:1350px;background:#f3f1e9;font-family:'Plus Jakarta Sans',Inter,'Segoe UI',sans-serif;color:#13231d;display:flex;flex-direction:column}
 .top{display:flex;justify-content:space-between;align-items:center;padding:56px 72px 0;font-size:27px;font-weight:700;color:#164f3c}.top i{font-style:normal;background:#c6f05a;color:#164f3c;border-radius:999px;padding:10px 24px;font-size:25px}
-h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;letter-spacing:-.02em;padding:46px 72px 0;color:#13231d}
+h1{font-size:${k.h1 || (k.judul.length > 46 ? 58 : 68)}px;line-height:1.1;font-weight:800;letter-spacing:-.02em;padding:46px 72px 0;color:#13231d}
 .sub{font-size:28px;color:#66746e;font-weight:500;padding:18px 72px 0}
 .isi{padding:38px 72px 0;font-size:${fs1}px;line-height:1.42;font-weight:500;flex:1;overflow:hidden}.isi p{margin-bottom:22px}.isi ul{margin:0 0 22px 0;padding-left:40px}.isi li{margin-bottom:14px}
 .rows{padding:30px 72px 0;flex:1;overflow:hidden}.r{display:flex;justify-content:space-between;align-items:center;border-top:2px solid #dcded5;padding:22px 0}.r:last-child{border-bottom:2px solid #dcded5}
@@ -287,14 +351,17 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
   /* data pasar */
   let varian = [], isoData = '', PASAR = null;
   try {
-    const [D, S, H] = await Promise.all([muat('market-daily.json'), muat('stocks.json'), muat('holder-accumulation.json').catch(() => null)]);
-    const P = olahPasar(D, S); P.H = H; isoData = P.iso;
+    const [D, S, H, G] = await Promise.all([muat('market-daily.json'), muat('stocks.json'), muat('holder-accumulation.json').catch(() => null), muatGrup()]);
+    const P = olahPasar(D, S); P.H = H; P.G = G; isoData = P.iso;
     if (dayDiff(hariIni, isoData) > 4) console.log(`data pasar basi (${isoData}), ringkasan hari ini dilewati`);
-    else { varian = varianPasar(P); PASAR = P; }
+    else { P.harian = await ambilHarian(isoData); varian = varianPasar(P); PASAR = P; }
   } catch (e) { console.error('[JOY] data pasar tidak bisa dipakai: ' + e.message); }
   /* urutan varian berputar menurut tanggal supaya campurannya berbeda tiap hari */
   const rot = Math.floor(Date.parse(hariIni + 'T00:00:00Z') / 864e5);
   varian = varian.filter(v => !status.ringkasan[v.ks || `${v.id}-${isoData}`]).map(v => ({ v, o: hsh(`${v.id}|${hariIni}`) })).sort((a, b) => a.o - b.o).map(x => x.v);
+  /* ringkasan se-pasar (yang menaut ke halaman Harian) dan ringkasan lain selang-seling; "Gambaran Pasar" selalu paling depan */
+  { const Hh = varian.filter(v => v.harian), Oo = varian.filter(v => !v.harian), gi = Hh.findIndex(v => v.id === 'gambaran'); if (gi > 0) Hh.unshift(Hh.splice(gi, 1)[0]);
+    varian = []; for (let i = 0; i < Math.max(Hh.length, Oo.length); i++) { if (Hh[i]) varian.push(Hh[i]); if (Oo[i]) varian.push(Oo[i]); } }
 
   /* kartu Ringkasan Cepat per saham: dibuat oleh mesin yang sama dengan tombol "Buat kartu konten JOY" di halaman saham website */
   let BRL = null, kartuMati = false, kartuGagal = 0;
@@ -359,8 +426,10 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
       if (gagal.length) { console.log(`ringkasan ${v.id} ditolak: ${gagal.join(', ')}`); i--; continue; }
       status.ringkasan[v.ks || `${v.id}-${isoData}`] = h.kunci;
       dibuat.push({ jenis: 'ringkasan', sumberId: `${v.id}-${isoData}`, caption: it.caption,
-        komentar: `Data lengkap dan detail tiap saham: ${utm('ringkasan-' + v.id, `${h.kunci}_${v.id}_${isoData}`, v.kode ? 'saham=' + v.kode : '', '#ringkasan')}\n\n${DISC}`,
-        kartu: { label: 'Data pasar', judul: v.judul, sub: `Penutupan ${tgl(isoData)}`, rows: v.rows, artinya: v.artinya, catatan: `Sumber: ${v.sumberK || 'data bursa'} diolah JOY. ${DISC}` } });
+        komentar: v.harian
+          ? `Ringkasan lengkap ${tgl(isoData)} (saham naik dan turun, arus asing, konglomerasi, pemegang 5%): ${utm('harian-' + v.id, `${h.kunci}_${v.id}_${isoData}`).replace(SITE + '/?', SITE + '/harian/' + isoData + '?')}\n\n${DISC}`
+          : `Data lengkap dan detail tiap saham: ${utm('ringkasan-' + v.id, `${h.kunci}_${v.id}_${isoData}`, v.kode ? 'saham=' + v.kode : '', '#ringkasan')}\n\n${DISC}`,
+        kartu: { label: 'Data pasar', h1: v.h1, judul: v.judul, sub: `Penutupan ${tgl(isoData)}`, rows: v.rows, artinya: v.artinya, catatan: `Sumber: ${v.sumberK || 'data bursa'} diolah JOY. ${DISC}` } });
     }
     /* kartu saham dari website */
     for (let i = 0; i < (rencana.kartuSaham || 0) && PASAR && !UJI; i++) {
