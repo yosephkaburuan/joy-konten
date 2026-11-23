@@ -1,0 +1,43 @@
+name: Halaman JOY - buat kiriman harian
+on:
+  schedule:
+    - cron: '30 22 * * *'   # tiap hari 05.30 WIB
+  workflow_dispatch:
+    inputs:
+      ulang:
+        description: 'Buat ulang kiriman hari ini yang belum tayang? (ya / tidak)'
+        default: 'tidak'
+permissions:
+  contents: write
+concurrency:
+  group: halaman-joy
+  cancel-in-progress: false
+jobs:
+  buat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Perbarui bahan edukasi dari artikel Academy di website
+        run: |
+          pip install beautifulsoup4 lxml
+          python3 buat_bank_edukasi.py https://saham.ijoy.co.id konten/bank-edukasi.json || echo "bank edukasi lama dipakai"
+      - name: Pasang Playwright
+        run: npm install playwright && npx playwright install --with-deps chromium
+      - name: Buat kiriman hari ini
+        run: |
+          if [ "${{ github.event.inputs.ulang }}" = "ya" ]; then node buat.js --ulang; else node buat.js; fi
+      - name: Simpan hasil
+        if: always()
+        run: |
+          git config user.name "joy-konten"
+          git config user.email "joy-konten@users.noreply.github.com"
+          git add -A halaman antrian-halaman.json status-halaman.json konten 2>/dev/null || true
+          git commit -m "Halaman: kiriman harian $(date -u +%Y-%m-%d)" || echo "tidak ada perubahan"
+          for i in 1 2 3; do git pull --rebase origin main && git push && break || sleep 5; done
