@@ -33,11 +33,31 @@ const SEKTOR = { IDXENERGY: 'Energi', IDXBASIC: 'Bahan Baku', IDXINDUST: 'Perind
 
 const utm = (campaign, content, query = '', hash = '') => `${SITE}/${query ? '?' + query + '&' : '?'}utm_source=facebook&utm_medium=social&utm_campaign=${campaign}&utm_content=${content}${hash}`;
 const load = (f, d) => { try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch (e) { return d; } };
+const API_GAS = 'https://script.google.com/macros/s/AKfycbym_piZ_ijaeykopEJMkly-CegRAz1Fk76ZaYhAuy4ijTtX4cEUMxDURT-60B94vk24MA/exec';
+const expandCol = d => { const F = d.f, D = d.colDates, byCode = {}; for (const k in d.c) { const o = d.c[k], m = o.i.length, rows = new Array(m); for (let j = 0; j < m; j++) { const r = { date: D[o.i[j]] }; for (let q = 0; q < F.length; q++) r[F[q]] = o[F[q]][j]; if (d.derivChange) r.change = (typeof r.close === 'number' && typeof r.previous === 'number') ? r.close - r.previous : null; rows[j] = r; } byCode[k] = rows; } const out = {}; for (const k in d) if (!['c', 'f', 'fmt', 'colDates', 'derivChange'].includes(k)) out[k] = d[k]; out.byCode = byCode; return out; };
+const ambilJson = async u => { const r = await fetch(u, { headers: { 'user-agent': 'joy-konten/1.0' } }); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); };
+/* Data terbaru ada di API website (dipakai halaman saham). Berkas .json statis hanya cadangan dan bisa tertinggal berhari-hari. */
 const muat = async nama => {
   if (DATA) return JSON.parse(fs.readFileSync(path.join(DATA, nama), 'utf8'));
-  const r = await fetch(`${SITE}/${nama}`, { headers: { 'user-agent': 'joy-konten/1.0' } });
-  if (!r.ok) throw new Error(`gagal mengambil ${nama}: ${r.status}`);
-  return r.json();
+  const ds = nama.replace(/\.json$/, '');
+  const calon = ds === 'market-daily' ? ['market-daily-col', 'market-daily'] : [ds];
+  for (const c of calon) for (const u of [`${SITE}/api/talk/data/${c}`, `${API_GAS}?action=dataset&name=${c}`]) {
+    const tampil = u.split('?')[0].replace(SITE, '');
+    try {
+      const p = await ambilJson(u);
+      if (!p || !p.berhasil || !p.data) throw new Error('data belum tersedia');
+      let d = p.data; if (d.fmt === 'col1') d = expandCol(d);
+      if (ds === 'market-daily') {
+        if (!d.byCode) throw new Error('format harga tidak sesuai');
+        if (!Array.isArray(d.dates) || !d.dates.length) d.dates = [...new Set(Object.values(d.byCode).flatMap(rows => rows.map(r => r.date)))].sort();
+      }
+      if (ds === 'stocks' && !Array.isArray(d.stocks)) throw new Error('format fundamental tidak sesuai');
+      console.log(`data ${ds}: dari ${tampil}, sampai ${ds === 'market-daily' ? d.dates[d.dates.length - 1] : (d.asOf || '-')}`);
+      return d;
+    } catch (e) { console.log(`data ${ds}: ${tampil} gagal (${e.message})`); }
+  }
+  console.log(`data ${ds}: pakai berkas statis ${nama}`);
+  return ambilJson(`${SITE}/${nama}`);
 };
 const DISC = 'Data dan edukasi, bukan ajakan membeli atau menjual.';
 
@@ -65,7 +85,7 @@ function olahPasar(D, S) {
     const hist = rows.slice(0, -1).slice(-20);
     const rata = hist.length >= 5 ? hist.reduce((a, x) => a + x.value, 0) / hist.length : 0;
     let streak = 0; for (let i = rows.length - 1; i >= 0 && rows[i].foreignNet > 0; i--) streak++;
-    R.push({ kode, nama: nama[kode] || kode, sektor: sek[kode] || '', close: r.close, pct: r.change / r.previous * 100, value: r.value, vol: r.volume, asing: r.foreignNet * r.close, rata, rasio: rata > 0 ? r.value / rata : 0, streak, ...fundamen(fund[kode], r.close) });
+    R.push({ kode, nama: nama[kode] || kode, sektor: sek[kode] || '', close: r.close, pct: (typeof r.change === 'number' ? r.change : r.close - r.previous) / r.previous * 100, value: r.value, vol: r.volume, asing: r.foreignNet * r.close, rata, rasio: rata > 0 ? r.value / rata : 0, streak, ...fundamen(fund[kode], r.close) });
   }
   return { iso, R, asOf: S.asOf || '', periode: String(S.period || '').split('/')[0].trim() };
 }
@@ -170,6 +190,30 @@ function varianPasar(P) {
         daftar: teksBaris(a, ekstra), rows: baris(a, ekstra), artinya: m.art, kode: a[0].kode, sumber, sumberK: 'data bursa dan laporan keuangan' });
     }));
   }
+  /* 12. pemegang saham di atas 5% yang menambah atau mengurangi lembar pada tanggal laporan terakhir (nama perorangan tidak ditampilkan) */
+  if (P.H && P.H.byCode && P.H.meta && P.H.meta.toDate && Math.abs(dayDiff(iso, P.H.meta.toDate)) <= 3) {
+    const tH = P.H.meta.toDate, harga = {}; R.forEach(x => { harga[x.kode] = x.close; });
+    const badan = /\b(PT|TBK|LTD|LIMITED|PTE|CORP|CORPORATION|INC|BANK|FUND|FUNDS|DANA|ASSET|ASSETS|HOLDING|HOLDINGS|INVESTMENT|INVESTMENTS|CAPITAL|SECURITIES|SEKURITAS|FINANCE|GROUP|LLC|BV|SA)\b/i;
+    const lbr = v => { const a = Math.abs(v); return a >= 1e9 ? n(a / 1e9, 2) + ' miliar lembar' : n(a / 1e6, 1) + ' juta lembar'; };
+    const gerak = [];
+    Object.values(P.H.byCode).forEach(c => {
+      if (c.needsNameReview) return;
+      (c.topMovers || []).forEach(m => {
+        if (m.needsNameReview || !harga[c.code]) return;
+        const a = (m.dailyActivities || []).find(d => d.date === tH);
+        if (!a || !a.changeShares) return;
+        gerak.push({ kode: c.code, nama: badan.test(m.holder || '') ? String(m.holder).replace(/\s+/g, ' ').trim() : 'pemegang perorangan', ubah: a.changeShares, pctAkhir: a.endPercentage, nilai: Math.abs(a.changeShares) * harga[c.code] });
+      });
+    });
+    [[1, 'menambah', 'Pemegang 5% Paling Banyak Menambah', 'tambah'], [-1, 'mengurangi', 'Pemegang 5% Paling Banyak Mengurangi', 'kurang']].forEach(([arah, kata, judul, kunci]) => {
+      const a = gerak.filter(x => Math.sign(x.ubah) === arah).sort((p, q) => q.nilai - p.nilai).slice(0, 5);
+      mk('pemegang-' + kunci, judul, '🏦', '#PemegangSaham #KSEI #SahamIndonesia',
+        `Pemegang saham di atas 5% yang paling besar nilainya ketika ${kata} lembar pada ${tgl(tH)} (nilai perkiraan = jumlah lembar × harga penutupan):`, a,
+        x => [`${arah > 0 ? '+' : '−'}${lbr(x.ubah)}`, `${n(x.pctAkhir, 2)}% setelahnya · ± ${besar(x.nilai)}`, `${arah > 0 ? 'menambah' : 'mengurangi'} ${lbr(x.ubah)} menjadi ${n(x.pctAkhir, 2)}% · nilai perkiraan ${besar(x.nilai)}`],
+        'laporan pemegang di atas 5% menunjukkan siapa yang menambah atau mengurangi kepemilikan. Itu belum tentu diikuti kenaikan atau penurunan harga, dan bisa juga berasal dari restrukturisasi atau perpindahan antar entitas yang sama.');
+      const v = V[V.length - 1]; if (v && v.id === 'pemegang-' + kunci) { v.sumber = 'laporan kepemilikan pemegang di atas 5% (data JOY) dan harga penutupan BEI, diolah JOY'; v.sumberK = 'laporan kepemilikan dan data bursa'; }
+    });
+  }
   return V;
 }
 function captionPasar(v, iso) {
@@ -243,8 +287,8 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
   /* data pasar */
   let varian = [], isoData = '', PASAR = null;
   try {
-    const [D, S] = await Promise.all([muat('market-daily.json'), muat('stocks.json')]);
-    const P = olahPasar(D, S); isoData = P.iso;
+    const [D, S, H] = await Promise.all([muat('market-daily.json'), muat('stocks.json'), muat('holder-accumulation.json').catch(() => null)]);
+    const P = olahPasar(D, S); P.H = H; isoData = P.iso;
     if (dayDiff(hariIni, isoData) > 4) console.log(`data pasar basi (${isoData}), ringkasan hari ini dilewati`);
     else { varian = varianPasar(P); PASAR = P; }
   } catch (e) { console.error('[JOY] data pasar tidak bisa dipakai: ' + e.message); }
@@ -261,9 +305,9 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
       pg = await BRL.newPage({ viewport: { width: 1280, height: 900 } });
       if (process.env.FAKE_NOW) await pg.clock.setFixedTime(new Date(process.env.FAKE_NOW));
       await pg.goto(`${SITE}/?saham=${kode}`, { waitUntil: 'domcontentloaded', timeout: 45000 });
-      const btn = await pg.waitForSelector('[data-ss-card]', { timeout: 25000 }).catch(() => null);
-      if (!btn) return null;
-      await btn.click();
+      if (!await pg.waitForSelector('[data-ss-card]', { timeout: 25000 }).catch(() => null)) return null;
+      await pg.waitForTimeout(800);
+      await pg.click('[data-ss-card]', { timeout: 10000 });
       await pg.waitForSelector('.ss-card canvas', { timeout: 10000 });
       await pg.waitForTimeout(1800);
       const cap = await pg.$eval('.ss-cap', e => e.value);
