@@ -1,0 +1,37 @@
+{
+ "board": "inv",
+ "judul": "Top Tracked Investors",
+ "iso": "2026-10-30",
+ "asof": "KSEI ≥1% 30 Okt 2026 · Harga 20 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Investor besar dengan posisi terbesar (data KSEI bulanan).",
+ "cards": [],
+ "rows": [
+  [
+   "1",
+   "DANANTARA ASSET MANAGEMENT",
+   "Posisi Rp680,4 T",
+   "BBRI 53,1%",
+   "BMRI 51,8%",
+   "TLKM 52,2%"
+  ],
+  [
+   "2",
+   "DWIMURIA INVESTAMA ANDALAN",
+   "Posisi Rp382,4 T",
+   "BBCA 54,9%",
+   "TOWR 20,0%",
+   "BELI 4,8%"
+  ],
+  [
+   "3",
+   "BARITO PACIFIC Tbk",
+   "Posisi Rp224,0 T",
+   "BREN 64,6%",
+   "TPIA 34,6%"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "Investor",
+ "note": ""
+}

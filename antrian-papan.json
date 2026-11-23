@@ -1,0 +1,90 @@
+[
+ {
+  "id": "2026-11-20_ti",
+  "key": "ti",
+  "judul": "Trading Idea JOY",
+  "iso": "2026-11-20",
+  "dir": "papan/2026-11-20_ti",
+  "files": [
+   "slide1_daftar.png"
+  ],
+  "status": "baru",
+  "dibuat": "2026-11-23T05:44:38.605Z"
+ },
+ {
+  "id": "2026-11-20_kg",
+  "key": "kg",
+  "judul": "Konglo Market Board",
+  "iso": "2026-11-20",
+  "dir": "papan/2026-11-20_kg",
+  "files": [
+   "slide1_sorotan.png",
+   "slide2_daftar.png"
+  ],
+  "status": "baru",
+  "dibuat": "2026-11-23T05:44:38.605Z"
+ },
+ {
+  "id": "2026-11-20_asing",
+  "key": "asing",
+  "judul": "Arus Asing Saham",
+  "iso": "2026-11-20",
+  "dir": "papan/2026-11-20_asing",
+  "files": [
+   "slide1_sorotan.png",
+   "slide2_daftar.png"
+  ],
+  "status": "baru",
+  "dibuat": "2026-11-23T05:44:38.605Z"
+ },
+ {
+  "id": "2026-11-20_sektor",
+  "key": "sektor",
+  "judul": "Rotasi Sektor",
+  "iso": "2026-11-20",
+  "dir": "papan/2026-11-20_sektor",
+  "files": [
+   "slide1_sorotan.png",
+   "slide2_daftar.png"
+  ],
+  "status": "baru",
+  "dibuat": "2026-11-23T05:44:38.605Z"
+ },
+ {
+  "id": "2026-11-20_lonjakan",
+  "key": "lonjakan",
+  "judul": "Lonjakan Transaksi",
+  "iso": "2026-11-20",
+  "dir": "papan/2026-11-20_lonjakan",
+  "files": [
+   "slide1_sorotan.png",
+   "slide2_daftar.png"
+  ],
+  "status": "baru",
+  "dibuat": "2026-11-23T05:44:38.605Z"
+ },
+ {
+  "id": "2026-10-30_inv",
+  "key": "inv",
+  "judul": "Top Tracked Investors",
+  "iso": "2026-10-30",
+  "dir": "papan/2026-10-30_inv",
+  "files": [
+   "slide1_daftar.png"
+  ],
+  "status": "baru",
+  "dibuat": "2026-11-23T05:44:38.605Z"
+ },
+ {
+  "id": "2026-11-19_mv",
+  "key": "mv",
+  "judul": "Ownership Moves",
+  "iso": "2026-11-19",
+  "dir": "papan/2026-11-19_mv",
+  "files": [
+   "slide1_daftar.png"
+  ],
+  "status": "baru",
+  "dibuat": "2026-11-23T05:44:38.605Z"
+ }
+]

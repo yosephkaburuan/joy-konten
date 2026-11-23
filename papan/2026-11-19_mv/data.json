@@ -1,0 +1,35 @@
+{
+ "board": "mv",
+ "judul": "Ownership Moves",
+ "iso": "2026-11-19",
+ "asof": "Data per 19 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Perubahan kepemilikan ≥5% terbaru yang signifikan.",
+ "cards": [],
+ "rows": [
+  [
+   "HRUM",
+   "PT KARUNIA BARA PERKASA",
+   "Menambah 4,71 miliar lbr · ≈ Rp3,2 T",
+   "▲ Tambah",
+   "16 Nov"
+  ],
+  [
+   "INET",
+   "PT ABADI KREASI UNGGUL NUSANTARA",
+   "Mengurangi 6,69 miliar lbr · ≈ Rp1,3 T",
+   "▼ Kurang",
+   "16 Nov"
+  ],
+  [
+   "SRIL",
+   "PT HUDDLESTON INDONESIA",
+   "Mengurangi 4,49 miliar lbr · ≈ Rp655 M",
+   "▼ Kurang",
+   "18 Nov"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "Perubahan",
+ "note": "+14 kejadian masuk/keluar daftar ≥5% ada di papan lengkap (belum tentu jual-beli)."
+}

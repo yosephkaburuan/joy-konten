@@ -1,0 +1,76 @@
+{
+ "board": "asing",
+ "judul": "Arus Asing Saham",
+ "iso": "2026-11-20",
+ "asof": "Data per 20 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Saham yang dibeli atau dijual asing dalam 5 hari bursa terakhir.",
+ "cards": [
+  {
+   "l": "NET BELI TERBESAR",
+   "n": "ASII",
+   "v": "+Rp124 M"
+  },
+  {
+   "l": "NET JUAL TERBESAR",
+   "n": "TLKM",
+   "v": "−Rp409 M"
+  },
+  {
+   "l": "BELI BERUNTUN",
+   "n": "MEDC",
+   "v": "11 hari"
+  },
+  {
+   "l": "JUAL BERUNTUN",
+   "n": "JPFA",
+   "v": "18 hari"
+  }
+ ],
+ "rows": [
+  [
+   "AS",
+   "ASII Astra International",
+   "20 Nov −Rp21 M · 20 hari +Rp1,1 T",
+   "+Rp124 M",
+   "5 hari",
+   "Harga −3,6%"
+  ],
+  [
+   "BR",
+   "BRIS Bank Syariah Indonesia",
+   "20 Nov +Rp5,6 M · 20 hari +Rp56 M",
+   "+Rp82 M",
+   "5 hari",
+   "Harga +1,8%"
+  ],
+  [
+   "IN",
+   "INDF Indofood Sukses Makmur",
+   "20 Nov +Rp9,9 M · 20 hari +Rp56 M",
+   "+Rp66 M",
+   "5 hari",
+   "7 hari beruntun",
+   "Harga +2,9%"
+  ],
+  [
+   "EX",
+   "EXCL XLSMART Telecom Sejahtera",
+   "20 Nov +Rp9,6 M · 20 hari +Rp132 M",
+   "+Rp48 M",
+   "5 hari",
+   "Harga +15,4%"
+  ],
+  [
+   "MB",
+   "MBMA Merdeka Battery Materials",
+   "20 Nov +Rp51 M · 20 hari +Rp104 M",
+   "+Rp46 M",
+   "5 hari",
+   "Harga +1,8%"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "Net beli",
+ "note": "Net beli asing terbesar dalam 5 hari bursa terakhir (16 Nov – 20 Nov 2026). Net asing = lembar net × harga penutupan (estimasi). Hanya saham dengan transaksi rata-rata ≥ Rp5 M per hari. Bukan ajakan membeli atau menjual."
+}

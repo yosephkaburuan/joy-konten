@@ -1,0 +1,75 @@
+{
+ "board": "lonjakan",
+ "judul": "Lonjakan Transaksi",
+ "iso": "2026-11-20",
+ "asof": "Data per 20 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Saham yang transaksinya jauh di atas rata-rata.",
+ "cards": [
+  {
+   "l": "LONJAKAN TERBESAR",
+   "n": "HRME",
+   "v": "15,6×"
+  },
+  {
+   "l": "TRANSAKSI TERBESAR",
+   "n": "BBCA",
+   "v": "Rp823 M"
+  },
+  {
+   "l": "NAIK TERTINGGI",
+   "n": "MBMA",
+   "v": "+15,4%"
+  },
+  {
+   "l": "TURUN TERDALAM",
+   "n": "HRME",
+   "v": "−6,9%"
+  }
+ ],
+ "rows": [
+  [
+   "HR",
+   "HRME Menteng Heritage Realty",
+   "Transaksi Rp60 M · rata-rata 19 hari Rp3,8 M",
+   "15,6×",
+   "dari rata-rata",
+   "Harga −6,9%"
+  ],
+  [
+   "TG",
+   "TGUK Platinum Wahab Nusantara",
+   "Transaksi Rp13 M · rata-rata 19 hari Rp2,5 M",
+   "5,3×",
+   "dari rata-rata",
+   "Harga +34,2%"
+  ],
+  [
+   "WI",
+   "WIFI Solusi Sinergi Digital",
+   "Transaksi Rp268 M · rata-rata 19 hari Rp53 M",
+   "5,1×",
+   "dari rata-rata",
+   "Harga datar −1,2%"
+  ],
+  [
+   "MB",
+   "MBMA Merdeka Battery Materials",
+   "Transaksi Rp174 M · rata-rata 19 hari Rp46 M",
+   "3,8×",
+   "dari rata-rata",
+   "Harga +15,4%"
+  ],
+  [
+   "NC",
+   "NCKL Trimegah Bangun Persada",
+   "Transaksi Rp83 M · rata-rata 19 hari Rp27 M",
+   "3,0×",
+   "dari rata-rata",
+   "Harga +5,0%"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "",
+ "note": "Nilai transaksi 20 Nov 2026 dibanding rata-rata hari bursa sebelumnya (≥2,5× dan ≥ Rp10 M). Transaksi ramai tidak menunjukkan arah harga; \"harga datar\" berarti perubahan harian di bawah 1,5%. Bukan ajakan membeli atau menjual."
+}
