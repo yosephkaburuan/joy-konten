@@ -1,0 +1,30 @@
+{
+ "situs": "https://saham.ijoy.co.id",
+ "mulai": "2026-11-23",
+ "rampHari": 7,
+ "jamAwal": 7.5,
+ "jamAkhir": 21.5,
+ "bataslikuid": 10000000000,
+ "halaman": [
+  {
+   "kunci": "jelasberita",
+   "nama": "Jelas Berita",
+   "id": "705420199566762",
+   "target": 15,
+   "awal": 6,
+   "jenis": { "edukasi": 3, "ringkasan": 5, "beritaSaham": 4, "umum": 3 },
+   "tagarEdukasi": "#BelajarSaham #EdukasiSaham #SahamIndonesia",
+   "sapaEdukasi": "Belajar Saham"
+  },
+  {
+   "kunci": "monas",
+   "nama": "Monas",
+   "id": "739273872776036",
+   "target": 10,
+   "awal": 4,
+   "jenis": { "edukasi": 2, "ringkasan": 3, "beritaSaham": 3, "cuaca": 1, "wisata": 1 },
+   "tagarEdukasi": "#BelajarSaham #SahamIndonesia #Jakarta",
+   "sapaEdukasi": "Belajar Saham dari Jakarta"
+  }
+ ]
+}
