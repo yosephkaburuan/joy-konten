@@ -42,10 +42,22 @@ const muat = async nama => {
 const DISC = 'Data dan edukasi, bukan ajakan membeli atau menjual.';
 
 /* ---------- ringkasan pasar dari data harian JOY ---------- */
+const hsh = s => { let h = 2166136261; for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0; };
+const rpM = v => { const a = Math.abs(v); return a >= 1000 ? 'Rp' + n(a / 1000, 1) + ' T' : 'Rp' + n(a, 0) + ' M'; };
+const fundamen = (s, close) => {
+  if (!s || !(s.price > 0) || !(close > 0)) return {};
+  const f = close / s.price, ok = v => typeof v === 'number' && isFinite(v), o = {};
+  if (ok(s.per) && s.per > 0.5 && ok(s.eps) && s.eps > 0) o.per = s.per * f;
+  if (ok(s.pbv) && s.pbv > 0.05) o.pbv = s.pbv * f;
+  if (ok(s.roe) && s.roe > 0 && s.roe < 1.5 && ok(s.equity) && s.equity > 0) o.roe = s.roe;
+  if (ok(s.netProfit) && s.netProfit > 0) o.laba = s.netProfit;
+  if (ok(s.marketCap) && s.marketCap > 0) o.mc = s.marketCap * f;
+  return o;
+};
 function olahPasar(D, S) {
   const iso = D.dates[D.dates.length - 1];
-  const sek = {}, nama = {};
-  (S.stocks || []).forEach(s => { sek[s.code] = s.sector; nama[s.code] = (s.name || s.code).replace(/\s+Tbk\.?$/i, '').trim(); });
+  const sek = {}, nama = {}, fund = {};
+  (S.stocks || []).forEach(s => { sek[s.code] = s.sector; nama[s.code] = (s.name || s.code).replace(/\s+Tbk\.?$/i, '').trim(); fund[s.code] = s; });
   const R = [];
   for (const [kode, rows] of Object.entries(D.byCode)) {
     const r = rows[rows.length - 1];
@@ -53,9 +65,9 @@ function olahPasar(D, S) {
     const hist = rows.slice(0, -1).slice(-20);
     const rata = hist.length >= 5 ? hist.reduce((a, x) => a + x.value, 0) / hist.length : 0;
     let streak = 0; for (let i = rows.length - 1; i >= 0 && rows[i].foreignNet > 0; i--) streak++;
-    R.push({ kode, nama: nama[kode] || kode, sektor: sek[kode] || '', close: r.close, pct: r.change / r.previous * 100, value: r.value, vol: r.volume, asing: r.foreignNet * r.close, rata, rasio: rata > 0 ? r.value / rata : 0, streak });
+    R.push({ kode, nama: nama[kode] || kode, sektor: sek[kode] || '', close: r.close, pct: r.change / r.previous * 100, value: r.value, vol: r.volume, asing: r.foreignNet * r.close, rata, rasio: rata > 0 ? r.value / rata : 0, streak, ...fundamen(fund[kode], r.close) });
   }
-  return { iso, R };
+  return { iso, R, asOf: S.asOf || '', periode: String(S.period || '').split('/')[0].trim() };
 }
 function varianPasar(P) {
   const L = CFG.bataslikuid, { R, iso } = P;
@@ -83,7 +95,7 @@ function varianPasar(P) {
   /* 2. paling aktif */
   { const a = top(aktif, x => x.value); mk('aktif', 'Saham Paling Aktif', '🔥', '#SahamAktif #SahamIndonesia #BEI',
     `Lima saham dengan nilai transaksi terbesar pada penutupan ${tgl(iso)}:`, a, x => [pct(x.pct), `${rp(x.close)} · nilai ${besar(x.value)}`, `${rp(x.close)} (${pct(x.pct)}) · nilai transaksi ${besar(x.value)}`],
-    'nilai transaksi menunjukkan seberapa ramai sebuah saham diperdagangkan. Ramai belum berarti harganya akan naik, karena transaksi besar terjadi juga saat saham dijual.'); }
+    'nilai transaksi menunjukkan seberapa ramai sebuah saham diperdagangkan. Ramai belum tentu diikuti kenaikan harga, karena transaksi besar terjadi juga saat saham dijual.'); }
   /* 3-4. naik dan turun */
   { const a = top(likuid, x => x.pct); mk('naik', 'Saham Naik Terbesar', '📈', '#SahamNaik #SahamIndonesia #BEI',
     `Lima saham dengan kenaikan harga terbesar pada penutupan ${tgl(iso)}. ${note}`, a.filter(x => x.pct > 0), x => [pct(x.pct), `${rp(x.close)} · nilai ${besar(x.value)}`, `${rp(x.close)} (${pct(x.pct)}) · nilai transaksi ${besar(x.value)}`],
@@ -119,11 +131,50 @@ function varianPasar(P) {
   { const a = top(likuid.filter(x => x.rata >= 5e9 && x.streak >= 4), x => x.streak * 1e6 + x.value / 1e6); mk('beruntun', 'Dibeli Asing Berhari-hari', '🔁', '#ArusAsing #SahamIndonesia #BEI',
     `Saham yang dibeli bersih oleh asing paling banyak hari berturut-turut sampai ${tgl(iso)}:`, a, x => [`${x.streak} hari`, `${rp(x.close)} (${pct(x.pct)})`, `net beli asing ${x.streak} hari berturut-turut · harga ${rp(x.close)} (${pct(x.pct)})`],
     'net beli beruntun menunjukkan minat yang konsisten, tetapi "asing" hanya kategori rekening dan bisa mengikuti penyeimbangan indeks.', 3); }
+  /* 10. peringkat per sektor dari data harian: paling aktif dan naik terbesar di tiap sektor */
+  Object.keys(SEKTOR).forEach(sk => {
+    const dalam = likuid.filter(x => x.sektor === sk), nm = SEKTOR[sk], tg = '#Saham' + nm.replace(/[^A-Za-z]/g, '') + ' #SahamIndonesia #BEI';
+    if (dalam.length < 8) return;
+    { const a = top(dalam, x => x.value); mk('aktif-' + sk, '5 Saham ' + nm + ' Paling Aktif', '🔥', tg,
+      `Lima saham sektor ${nm} dengan nilai transaksi terbesar pada penutupan ${tgl(iso)}. ${note}`, a, x => [pct(x.pct), `${rp(x.close)} · nilai ${besar(x.value)}`, `${rp(x.close)} (${pct(x.pct)}) · nilai transaksi ${besar(x.value)}`],
+      'ramai diperdagangkan belum tentu diikuti kenaikan harga. Bandingkan dengan pergerakan sektor dan kabar perusahaannya.'); }
+    { const a = top(dalam, x => x.pct).filter(x => x.pct > 0); mk('naik-' + sk, '5 Saham ' + nm + ' Naik Terbesar', '📈', tg,
+      `Lima saham sektor ${nm} dengan kenaikan harga terbesar pada penutupan ${tgl(iso)}. ${note}`, a, x => [pct(x.pct), `${rp(x.close)} · nilai ${besar(x.value)}`, `${rp(x.close)} (${pct(x.pct)}) · nilai transaksi ${besar(x.value)}`],
+      'naik tajam dalam sehari belum tentu berlanjut. Cek dulu penyebabnya, misalnya kabar perusahaan atau pergerakan sektor.'); }
+  });
+  /* 11. peringkat dari laporan keuangan: tampil sekali tiap pembaruan data, seluruh pasar dan per sektor */
+  if (P.asOf && P.periode) {
+    const sumber = `data bursa (Ringkasan Saham BEI) dan laporan keuangan 12 bulan terakhir s.d. ${P.periode} (data JOY, diperbarui ${P.asOf}), diolah JOY`;
+    const slug = P.asOf.toLowerCase().replace(/[^a-z0-9]+/g, '');
+    const M = [
+      { k: 'roe', judul: 'ROE Tertinggi', emoji: '💹', tagar: '#ROE #FundamentalSaham', dir: 1, f: x => x.roe, fm: x => n(x.roe * 100, 1) + '%',
+        def: 'ROE (laba bersih 12 bulan terakhir dibagi ekuitas)', art: 'ROE menunjukkan seberapa besar laba yang dihasilkan dari modal pemegang saham. ROE tinggi bisa juga muncul karena ekuitas kecil atau utang besar, jadi cek juga DER dan kestabilan labanya.' },
+      { k: 'per', judul: 'PER Terendah', emoji: '🏷️', tagar: '#PER #FundamentalSaham', dir: -1, f: x => x.per, fm: x => n(x.per, 1) + '×',
+        def: 'PER (harga penutupan dibagi laba per saham 12 bulan terakhir; hanya saham yang labanya positif)', art: 'PER rendah berarti harga lebih kecil dibanding laba saat ini, tetapi bisa karena laba sedang di puncak atau pasar ragu pada prospeknya. Bandingkan dengan sesama sektor.' },
+      { k: 'pbv', judul: 'PBV Terendah', emoji: '📚', tagar: '#PBV #FundamentalSaham', dir: -1, f: x => x.pbv, fm: x => n(x.pbv, 2) + '×',
+        def: 'PBV (harga penutupan dibagi nilai buku per saham)', art: 'PBV di bawah 1× berarti harga di bawah nilai buku. Murah menurut angka belum tentu murah sesungguhnya: periksa kualitas aset dan labanya.' },
+      { k: 'laba', judul: 'Laba Bersih Terbesar', emoji: '💰', tagar: '#LabaBersih #FundamentalSaham', dir: 1, f: x => x.laba, fm: x => rpM(x.laba),
+        def: 'laba bersih 12 bulan terakhir', art: 'laba besar menunjukkan skala usaha, bukan murah atau mahalnya harga saham. Bandingkan dengan kapitalisasi pasarnya.' },
+      { k: 'mc', judul: 'Kapitalisasi Pasar Terbesar', emoji: '🏛️', tagar: '#KapitalisasiPasar #SahamIndonesia', dir: 1, f: x => x.mc, fm: x => rpM(x.mc),
+        def: 'kapitalisasi pasar (harga penutupan dikali jumlah saham beredar)', art: 'kapitalisasi pasar menunjukkan ukuran perusahaan di bursa, bukan penilaian murah atau mahal. Saham berkapitalisasi besar pun bisa turun.' }
+    ];
+    const lingkup = [{ id: 'all', nama: '', arr: likuid }].concat(Object.keys(SEKTOR).map(sk => ({ id: sk, nama: SEKTOR[sk], arr: likuid.filter(x => x.sektor === sk) })));
+    M.forEach(m => lingkup.forEach(l => {
+      const ada = l.arr.filter(x => typeof m.f(x) === 'number');
+      if (ada.length < (l.id === 'all' ? 30 : 8)) return;
+      const a = ada.slice().sort((p, q) => m.dir * (m.f(q) - m.f(p))).slice(0, 5);
+      const ekstra = x => [m.fm(x), `${rp(x.close)} (${pct(x.pct)})`, `${m.fm(x)} · harga ${rp(x.close)} (${pct(x.pct)})`];
+      const judul = l.nama ? `5 Saham ${l.nama}: ${m.judul}` : `5 Saham dengan ${m.judul}`;
+      V.push({ id: `f-${m.k}-${l.id}-${slug}`, ks: `f-${m.k}-${l.id}-${slug}`, judul, emoji: m.emoji, tagar: m.tagar + ' #SahamIndonesia',
+        intro: `Lima saham ${l.nama ? 'sektor ' + l.nama : 'di BEI'} dengan ${m.def} ${m.dir > 0 ? 'tertinggi' : 'terendah'}. ${note}`,
+        daftar: teksBaris(a, ekstra), rows: baris(a, ekstra), artinya: m.art, kode: a[0].kode, sumber, sumberK: 'data bursa dan laporan keuangan' });
+    }));
+  }
   return V;
 }
 function captionPasar(v, iso) {
   return [`${v.emoji} ${v.judul} · ${tgl(iso)}`, '', v.intro, v.daftar ? v.daftar : '', '', `Artinya: ${v.artinya}`, '', 'Detail tiap saham ada di komentar pertama 👇', '', v.tagar, '',
-    `Sumber: data bursa (Ringkasan Saham BEI) diolah JOY. Data per ${tglP(iso)}. ${DISC}`].filter((x, i, a) => !(x === '' && a[i - 1] === '')).join('\n').replace(/\n\n\n+/g, '\n\n');
+    `Sumber: ${v.sumber || 'data bursa (Ringkasan Saham BEI) diolah JOY'}. Data per ${tglP(iso)}. ${DISC}`].filter((x, i, a) => !(x === '' && a[i - 1] === '')).join('\n').replace(/\n\n\n+/g, '\n\n');
 }
 
 /* ---------- edukasi dari Academy ---------- */
@@ -183,27 +234,53 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
 (async () => {
   const sekarang = new Date(), hariIni = arg('tgl', wib(sekarang).toISOString().slice(0, 10));
   const hariKe = Math.max(0, dayDiff(hariIni, CFG.mulai));
-  let antrean = load(QFILE, []), status = load(SFILE, { edukasi: {}, ringkasan: {} });
+  let antrean = load(QFILE, []), status = load(SFILE, { edukasi: {}, ringkasan: {}, kartu: {} }); status.kartu = status.kartu || {};
   const bank = load(path.join(__dirname, 'konten', 'bank-edukasi.json'), []);
   /* buang kiriman lama (21 hari) dan, bila --ulang, kiriman hari ini yang belum tayang */
   antrean = antrean.filter(x => dayDiff(hariIni, x.tglPos) <= 21 && !(ULANG && x.tglPos === hariIni && x.status === 'baru'));
   const riwayat = antrean.filter(x => dayDiff(hariIni, x.tglPos) <= 14);
 
   /* data pasar */
-  let varian = [], isoData = '';
+  let varian = [], isoData = '', PASAR = null;
   try {
     const [D, S] = await Promise.all([muat('market-daily.json'), muat('stocks.json')]);
     const P = olahPasar(D, S); isoData = P.iso;
     if (dayDiff(hariIni, isoData) > 4) console.log(`data pasar basi (${isoData}), ringkasan hari ini dilewati`);
-    else varian = varianPasar(P);
+    else { varian = varianPasar(P); PASAR = P; }
   } catch (e) { console.error('[JOY] data pasar tidak bisa dipakai: ' + e.message); }
   /* urutan varian berputar menurut tanggal supaya campurannya berbeda tiap hari */
   const rot = Math.floor(Date.parse(hariIni + 'T00:00:00Z') / 864e5);
-  varian = varian.filter(v => !(status.ringkasan[`${v.id}-${isoData}`])).map((v, i, a) => ({ v, o: (i + rot) % a.length })).sort((a, b) => a.o - b.o).map(x => x.v);
+  varian = varian.filter(v => !status.ringkasan[v.ks || `${v.id}-${isoData}`]).map(v => ({ v, o: hsh(`${v.id}|${hariIni}`) })).sort((a, b) => a.o - b.o).map(x => x.v);
+
+  /* kartu Ringkasan Cepat per saham: dibuat oleh mesin yang sama dengan tombol "Buat kartu konten JOY" di halaman saham website */
+  let BRL = null;
+  const kartuLive = async kode => {
+    let pg = null;
+    try {
+      if (!BRL) BRL = await require('playwright').chromium.launch();
+      pg = await BRL.newPage({ viewport: { width: 1280, height: 900 } });
+      if (process.env.FAKE_NOW) await pg.clock.setFixedTime(new Date(process.env.FAKE_NOW));
+      await pg.goto(`${SITE}/?saham=${kode}`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+      const btn = await pg.waitForSelector('[data-ss-card]', { timeout: 25000 }).catch(() => null);
+      if (!btn) return null;
+      await btn.click();
+      await pg.waitForSelector('.ss-card canvas', { timeout: 10000 });
+      await pg.waitForTimeout(1800);
+      const cap = await pg.$eval('.ss-cap', e => e.value);
+      const url = await pg.$eval('.ss-card canvas', c => c.toDataURL('image/jpeg', 0.9));
+      const baris = cap.split('\n').filter(l => !/^Selengkapnya:/.test(l));
+      const isi = baris.join('\n').trim().replace(/\nBahan riset dan edukasi, bukan ajakan beli atau jual\.$/, '\nSumber: harga dan volume BEI, kepemilikan KSEI, laporan keuangan; diolah JOY Capital Market.\nBahan riset dan edukasi, bukan ajakan beli atau jual.');
+      const caption = [`🔎 Ringkasan Cepat ${kode} · ${tgl(hariIni)}`, '', isi, '', `#SahamIndonesia #${kode} #AnalisaSaham`].join('\n');
+      return { caption, jpg: Buffer.from(url.split(',')[1], 'base64'), alt: `Ringkasan Cepat ${kode}. ${baris[2] || ''}` };
+    } catch (e) { console.log(`kartu ${kode}: ${String(e.message).split('\n')[0]}`); return null; }
+    finally { if (pg) await pg.close().catch(() => {}); }
+  };
+  const calonKartu = PASAR ? PASAR.R.filter(x => x.value >= CFG.bataslikuid && x.close >= 50 && !(status.kartu[x.kode] && dayDiff(hariIni, status.kartu[x.kode]) < 14))
+    .sort((a, b) => b.value - a.value).slice(0, 60).sort((a, b) => hsh(a.kode + '|' + hariIni) - hsh(b.kode + '|' + hariIni)).map(x => x.kode) : [];
 
   const baru = [];
-  CFG.halaman.forEach((h, hi) => {
-    if (antrean.some(x => x.halaman === h.kunci && x.tglPos === hariIni)) { console.log(`${h.nama}: antrean ${hariIni} sudah ada, dilewati`); return; }
+  for (const [hi, h] of CFG.halaman.entries()) {
+    if (antrean.some(x => x.halaman === h.kunci && x.tglPos === hariIni)) { console.log(`${h.nama}: antrean ${hariIni} sudah ada, dilewati`); continue; }
     const kuota = Math.round(h.awal + (h.target - h.awal) * Math.min(1, hariKe / CFG.rampHari));
     const rencana = {}; let tot = 0;
     Object.entries(h.jenis).forEach(([j, c]) => { rencana[j] = Math.round(c * kuota / h.target); });
@@ -231,10 +308,26 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
       const it = { caption: captionPasar(v, isoData) };
       const gagal = lolos(it, riwayat.concat(baru, dibuat));
       if (gagal.length) { console.log(`ringkasan ${v.id} ditolak: ${gagal.join(', ')}`); i--; continue; }
-      status.ringkasan[`${v.id}-${isoData}`] = h.kunci;
+      status.ringkasan[v.ks || `${v.id}-${isoData}`] = h.kunci;
       dibuat.push({ jenis: 'ringkasan', sumberId: `${v.id}-${isoData}`, caption: it.caption,
         komentar: `Data lengkap dan detail tiap saham: ${utm('ringkasan-' + v.id, `${h.kunci}_${v.id}_${isoData}`, v.kode ? 'saham=' + v.kode : '', '#ringkasan')}\n\n${DISC}`,
-        kartu: { label: 'Data pasar', judul: v.judul, sub: `Penutupan ${tgl(isoData)}`, rows: v.rows, artinya: v.artinya, catatan: `Sumber: data bursa diolah JOY. ${DISC}` } });
+        kartu: { label: 'Data pasar', judul: v.judul, sub: `Penutupan ${tgl(isoData)}`, rows: v.rows, artinya: v.artinya, catatan: `Sumber: ${v.sumberK || 'data bursa'} diolah JOY. ${DISC}` } });
+    }
+    /* kartu saham dari website */
+    for (let i = 0; i < (rencana.kartuSaham || 0) && PASAR && !UJI; i++) {
+      let hasil = null, kode = '';
+      while (!hasil && calonKartu.length) {
+        kode = calonKartu.shift();
+        hasil = await kartuLive(kode);
+        if (!hasil) { console.log(`kartu ${kode}: tidak dibuat (data belum segar atau halaman gagal)`); continue; }
+        const gagal = lolos({ caption: hasil.caption }, riwayat.concat(baru, dibuat));
+        if (gagal.length) { console.log(`kartu ${kode} ditolak: ${gagal.join(', ')}`); hasil = null; }
+      }
+      if (!hasil) { console.log(`${h.nama}: kartu saham habis atau tidak bisa dibuat`); break; }
+      status.kartu[kode] = hariIni;
+      dibuat.push({ jenis: 'kartuSaham', sumberId: `kartu-${kode}-${isoData}`, caption: hasil.caption,
+        komentar: `Ringkasan lengkap ${kode} (harga, fundamental, kepemilikan, grafik): ${utm('kartu-saham', `${h.kunci}_${kode}_${isoData}`, 'saham=' + kode, '#ringkasan')}\n\n${DISC}`,
+        kartu: { jpg: hasil.jpg, alt: hasil.alt } });
     }
     /* urutan selang-seling jenis, lalu jam tayang tersebar */
     const per = {}; dibuat.forEach(x => (per[x.jenis] = per[x.jenis] || []).push(x));
@@ -249,7 +342,7 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
       baru.push({ id: `${hariIni}_${h.kunci}_${String(i + 1).padStart(2, '0')}`, halaman: h.kunci, tglPos: hariIni, jenis: x.jenis, sumberId: x.sumberId, jadwal: jad.toISOString(), status: 'baru', caption: x.caption, komentar: x.komentar, kartu: x.kartu, berkas: `${OUT}/${hariIni}/${h.kunci}-${String(i + 1).padStart(2, '0')}.jpg`, dibuat: sekarang.toISOString() });
     });
     console.log(`${h.nama}: kuota ${kuota}/hari (hari ke-${hariKe}), dibuat ${urut.length}: ` + Object.entries(per).length + ' jenis');
-  });
+  }
 
   if (UJI) { baru.forEach(x => console.log(`\n=== ${x.id} | ${x.jenis} | ${wib(new Date(x.jadwal)).toISOString().slice(11, 16)} WIB\n${x.caption}\n--- komentar:\n${x.komentar}`)); console.log(`\n(uji) ${baru.length} kiriman, tidak ada yang disimpan`); return; }
 
@@ -258,6 +351,7 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
     const { chromium } = require('playwright');
     const br = await chromium.launch(); const pg = await br.newPage({ viewport: { width: 1080, height: 1350 }, deviceScaleFactor: 1 });
     for (const x of baru) {
+      if (x.kartu.jpg) { fs.mkdirSync(path.dirname(x.berkas), { recursive: true }); fs.writeFileSync(x.berkas, x.kartu.jpg); x.alt = x.kartu.alt; delete x.kartu; continue; }
       await pg.setContent(kartuHTML(x.kartu), { waitUntil: 'networkidle', timeout: 30000 }).catch(() => pg.setContent(kartuHTML(x.kartu)));
       await pg.evaluate(() => document.fonts && document.fonts.ready).catch(() => {});
       fs.mkdirSync(path.dirname(x.berkas), { recursive: true });
@@ -267,6 +361,7 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
     }
     await br.close();
   }
+  if (BRL) await BRL.close().catch(() => {});
   antrean = antrean.concat(baru);
   fs.writeFileSync(QFILE, JSON.stringify(antrean, null, 1)); fs.writeFileSync(SFILE, JSON.stringify(status, null, 1));
   /* buang gambar lama (lebih dari 3 hari) */
