@@ -1,0 +1,48 @@
+name: Papan JOY ke Facebook
+on:
+  schedule:
+    - cron: '5,35 10-14 * * 1-5'   # tiap 30 menit, 17.05 sampai 21.35 WIB, Senin sampai Jumat
+  workflow_dispatch:
+    inputs:
+      paksa:
+        description: 'Buat ulang papan walau tanggal datanya sudah pernah dibuat? (ya / tidak)'
+        default: 'tidak'
+permissions:
+  contents: write
+concurrency:
+  group: papan-fb
+  cancel-in-progress: false
+jobs:
+  papan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Pasang Playwright
+        run: npm install playwright && npx playwright install --with-deps chromium
+      - name: Potret papan dari website (hanya yang datanya baru)
+        env:
+          SITE: https://saham.ijoy.co.id/
+          OUT_DIR: papan
+          STATE_FILE: posted-papan.json
+          ANTRIAN: antrian-papan.json
+        run: |
+          if [ "${{ github.event.inputs.paksa }}" = "ya" ]; then node papan.js --mark --antri --force; else node papan.js --mark --antri; fi
+      - name: Tayangkan satu kiriman dari antrean ke Facebook
+        env:
+          ANTRIAN: antrian-papan.json
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: node fbpost.js
+      - name: Simpan hasil
+        if: always()
+        run: |
+          git config user.name "joy-konten"
+          git config user.email "joy-konten@users.noreply.github.com"
+          git add papan posted-papan.json antrian-papan.json 2>/dev/null || true
+          git commit -m "Papan $(date -u +%Y-%m-%dT%H:%MZ)" || echo "tidak ada perubahan"
+          git pull --rebase origin main || true
+          git push || true
