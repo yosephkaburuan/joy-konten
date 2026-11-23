@@ -297,15 +297,20 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
   varian = varian.filter(v => !status.ringkasan[v.ks || `${v.id}-${isoData}`]).map(v => ({ v, o: hsh(`${v.id}|${hariIni}`) })).sort((a, b) => a.o - b.o).map(x => x.v);
 
   /* kartu Ringkasan Cepat per saham: dibuat oleh mesin yang sama dengan tombol "Buat kartu konten JOY" di halaman saham website */
-  let BRL = null;
+  let BRL = null, kartuMati = false, kartuGagal = 0;
   const kartuLive = async kode => {
     let pg = null;
     try {
       if (!BRL) BRL = await require('playwright').chromium.launch();
-      pg = await BRL.newPage({ viewport: { width: 1280, height: 900 } });
+      pg = await BRL.newPage({ viewport: { width: 1280, height: 900 }, locale: 'id-ID', timezoneId: 'Asia/Jakarta', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36' });
+      const logK = []; pg.on('console', m => { if (m.type() === 'error') logK.push(m.text().slice(0, 140)); }); pg.on('requestfailed', r => logK.push('gagal: ' + r.url().slice(0, 100)));
       if (process.env.FAKE_NOW) await pg.clock.setFixedTime(new Date(process.env.FAKE_NOW));
       await pg.goto(`${SITE}/?saham=${kode}`, { waitUntil: 'domcontentloaded', timeout: 45000 });
-      if (!await pg.waitForSelector('[data-ss-card]', { timeout: 25000 }).catch(() => null)) return null;
+      if (!await pg.waitForSelector('[data-ss-card]', { timeout: 25000 }).catch(() => null)) {
+        const inf = await pg.evaluate(() => document.title + ' | ' + (document.body ? document.body.innerText.replace(/\s+/g, ' ').slice(0, 160) : '')).catch(() => '?');
+        console.log('kartu ' + kode + ': tombol tidak muncul. halaman: ' + inf + ' | log: ' + logK.slice(0, 4).join(' ; '));
+        return null;
+      }
       await pg.waitForTimeout(800);
       await pg.click('[data-ss-card]', { timeout: 10000 });
       await pg.waitForSelector('.ss-card canvas', { timeout: 10000 });
@@ -360,10 +365,11 @@ h1{font-size:${k.judul.length > 46 ? 58 : 68}px;line-height:1.1;font-weight:800;
     /* kartu saham dari website */
     for (let i = 0; i < (rencana.kartuSaham || 0) && PASAR && !UJI; i++) {
       let hasil = null, kode = '';
-      while (!hasil && calonKartu.length) {
+      while (!hasil && calonKartu.length && !kartuMati) {
         kode = calonKartu.shift();
         hasil = await kartuLive(kode);
-        if (!hasil) { console.log(`kartu ${kode}: tidak dibuat (data belum segar atau halaman gagal)`); continue; }
+        if (!hasil) { console.log(`kartu ${kode}: tidak dibuat (data belum segar atau halaman gagal)`); if (++kartuGagal >= 3) { kartuMati = true; console.log('kartu saham dihentikan untuk hari ini: 3 kali gagal berturut-turut'); } continue; }
+        kartuGagal = 0;
         const gagal = lolos({ caption: hasil.caption }, riwayat.concat(baru, dibuat));
         if (gagal.length) { console.log(`kartu ${kode} ditolak: ${gagal.join(', ')}`); hasil = null; }
       }
