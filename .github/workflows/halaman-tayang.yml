@@ -1,0 +1,31 @@
+name: Halaman JOY - tayangkan ke Facebook
+on:
+  schedule:
+    - cron: '2,32 0-14 * * *'   # tiap 30 menit, 07.02 sampai 21.32 WIB
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: halaman-joy
+  cancel-in-progress: false
+jobs:
+  tayang:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Tayangkan kiriman yang jatuh tempo
+        env:
+          FB_PAGES: ${{ secrets.FB_PAGES }}
+        run: node tayang.js
+      - name: Simpan status
+        if: always()
+        run: |
+          git config user.name "joy-konten"
+          git config user.email "joy-konten@users.noreply.github.com"
+          git add antrian-halaman.json 2>/dev/null || true
+          git commit -m "Halaman: status tayang $(date -u +%Y-%m-%dT%H:%MZ)" || echo "tidak ada perubahan"
+          for i in 1 2 3; do git pull --rebase origin main && git push && break || sleep 5; done
