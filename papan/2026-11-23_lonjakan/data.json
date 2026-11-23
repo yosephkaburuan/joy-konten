@@ -1,0 +1,75 @@
+{
+ "board": "lonjakan",
+ "judul": "Lonjakan Transaksi",
+ "iso": "2026-11-23",
+ "asof": "Data per 23 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Saham yang transaksinya jauh di atas rata-rata.",
+ "cards": [
+  {
+   "l": "LONJAKAN TERBESAR",
+   "n": "TGUK",
+   "v": "13,9×"
+  },
+  {
+   "l": "TRANSAKSI TERBESAR",
+   "n": "BBCA",
+   "v": "Rp1,1 T"
+  },
+  {
+   "l": "NAIK TERTINGGI",
+   "n": "TRIN",
+   "v": "+34,7%"
+  },
+  {
+   "l": "TURUN TERDALAM",
+   "n": "MGLV",
+   "v": "−9,9%"
+  }
+ ],
+ "rows": [
+  [
+   "TG",
+   "TGUK Platinum Wahab Nusantara",
+   "Transaksi Rp44 M · rata-rata 19 hari Rp3,2 M",
+   "13,9×",
+   "dari rata-rata",
+   "Harga −6,6%"
+  ],
+  [
+   "TR",
+   "TRUE Triniti Dinamik",
+   "Transaksi Rp40 M · rata-rata 19 hari Rp5,4 M",
+   "7,5×",
+   "dari rata-rata",
+   "Harga +30,3%"
+  ],
+  [
+   "CD",
+   "CDIA Chandra Daya Investasi",
+   "Transaksi Rp60 M · rata-rata 19 hari Rp13 M",
+   "4,6×",
+   "dari rata-rata",
+   "Harga +24,5%"
+  ],
+  [
+   "FO",
+   "FOLK Multi Garam Utama",
+   "Transaksi Rp63 M · rata-rata 19 hari Rp14 M",
+   "4,5×",
+   "dari rata-rata",
+   "Harga +8,0%"
+  ],
+  [
+   "MB",
+   "MBMA Merdeka Battery Materials",
+   "Transaksi Rp184 M · rata-rata 19 hari Rp53 M",
+   "3,5×",
+   "dari rata-rata",
+   "Harga +4,7%"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "",
+ "note": "Nilai transaksi 23 Nov 2026 dibanding rata-rata hari bursa sebelumnya (≥2,5× dan ≥ Rp10 M). Transaksi ramai tidak menunjukkan arah harga; \"harga datar\" berarti perubahan harian di bawah 1,5%. Bukan ajakan membeli atau menjual."
+}

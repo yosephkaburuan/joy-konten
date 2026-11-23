@@ -1,0 +1,44 @@
+{
+ "board": "ti",
+ "judul": "Trading Idea JOY",
+ "iso": "2026-11-23",
+ "asof": "Sesi Selasa, 24 November 2026 · data penutupan 23 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Sesi Selasa, 24 November 2026 · data penutupan 23 Nov 2026",
+ "cards": [],
+ "rows": [
+  [
+   "BUY",
+   "MBMA",
+   "▲ 6,8%",
+   "Beli 348–360"
+  ],
+  [
+   "BUY",
+   "DEWA",
+   "▲ 7,8%",
+   "Beli 238–248"
+  ],
+  [
+   "BUY",
+   "WIFI",
+   "▲ 9%",
+   "Beli 870–910"
+  ],
+  [
+   "BUY",
+   "CUAN",
+   "▲ 9,5%",
+   "Beli 382–400"
+  ],
+  [
+   "BUY",
+   "PTRO",
+   "▲ 10,4%",
+   "Beli 2.340–2.460"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "",
+ "note": ""
+}

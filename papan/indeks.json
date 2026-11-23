@@ -2,8 +2,8 @@
  {
   "key": "ti",
   "judul": "Trading Idea JOY",
-  "iso": "2026-11-20",
-  "dir": "papan/2026-11-20_ti",
+  "iso": "2026-11-23",
+  "dir": "papan/2026-11-23_ti",
   "files": [
    "slide1_daftar.png"
   ]
@@ -11,8 +11,8 @@
  {
   "key": "kg",
   "judul": "Konglo Market Board",
-  "iso": "2026-11-20",
-  "dir": "papan/2026-11-20_kg",
+  "iso": "2026-11-23",
+  "dir": "papan/2026-11-23_kg",
   "files": [
    "slide1_sorotan.png",
    "slide2_daftar.png"
@@ -21,8 +21,8 @@
  {
   "key": "asing",
   "judul": "Arus Asing Saham",
-  "iso": "2026-11-20",
-  "dir": "papan/2026-11-20_asing",
+  "iso": "2026-11-23",
+  "dir": "papan/2026-11-23_asing",
   "files": [
    "slide1_sorotan.png",
    "slide2_daftar.png"
@@ -31,8 +31,8 @@
  {
   "key": "sektor",
   "judul": "Rotasi Sektor",
-  "iso": "2026-11-20",
-  "dir": "papan/2026-11-20_sektor",
+  "iso": "2026-11-23",
+  "dir": "papan/2026-11-23_sektor",
   "files": [
    "slide1_sorotan.png",
    "slide2_daftar.png"
@@ -41,27 +41,18 @@
  {
   "key": "lonjakan",
   "judul": "Lonjakan Transaksi",
-  "iso": "2026-11-20",
-  "dir": "papan/2026-11-20_lonjakan",
+  "iso": "2026-11-23",
+  "dir": "papan/2026-11-23_lonjakan",
   "files": [
    "slide1_sorotan.png",
    "slide2_daftar.png"
   ]
  },
  {
-  "key": "inv",
-  "judul": "Top Tracked Investors",
-  "iso": "2026-10-30",
-  "dir": "papan/2026-10-30_inv",
-  "files": [
-   "slide1_daftar.png"
-  ]
- },
- {
   "key": "mv",
   "judul": "Ownership Moves",
-  "iso": "2026-11-19",
-  "dir": "papan/2026-11-19_mv",
+  "iso": "2026-11-20",
+  "dir": "papan/2026-11-20_mv",
   "files": [
    "slide1_daftar.png"
   ]

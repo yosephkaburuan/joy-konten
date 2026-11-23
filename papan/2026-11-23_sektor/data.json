@@ -1,0 +1,123 @@
+{
+ "board": "sektor",
+ "judul": "Rotasi Sektor",
+ "iso": "2026-11-23",
+ "asof": "Data per 23 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Ke sektor mana dana asing bergerak, dan bagaimana harganya.",
+ "cards": [
+  {
+   "l": "ARUS MASUK TERBESAR",
+   "n": "Kesehatan",
+   "v": "+Rp7,2 M"
+  },
+  {
+   "l": "ARUS KELUAR TERBESAR",
+   "n": "Keuangan",
+   "v": "−Rp1,2 T"
+  },
+  {
+   "l": "HARGA TERKUAT 5 HARI",
+   "n": "Infrastruktur",
+   "v": "+1,9%"
+  },
+  {
+   "l": "HARGA TERLEMAH 5 HARI",
+   "n": "Teknologi",
+   "v": "−5,1%"
+  }
+ ],
+ "rows": [
+  [
+   "SR",
+   "KL",
+   "Kesehatan",
+   "37 emiten",
+   "+Rp7,2 M",
+   "5 hari · −0,6%"
+  ],
+  [
+   "GI",
+   "TM",
+   "Transportasi",
+   "40 emiten",
+   "−Rp10 M",
+   "5 hari · +0,6%"
+  ],
+  [
+   "PA",
+   "MK",
+   "Properti",
+   "91 emiten",
+   "−Rp45 M",
+   "5 hari · −3,8%"
+  ],
+  [
+   "MA",
+   "MA",
+   "Konsumer Siklikal",
+   "141 emiten",
+   "−Rp48 M",
+   "5 hari · −3,6%"
+  ],
+  [
+   "MP",
+   "HM",
+   "Konsumer Primer",
+   "126 emiten",
+   "−Rp91 M",
+   "5 hari · −2,2%"
+  ],
+  [
+   "AS",
+   "UN",
+   "Industri",
+   "67 emiten",
+   "−Rp149 M",
+   "5 hari · −4,9%"
+  ],
+  [
+   "AM",
+   "TP",
+   "Bahan Baku",
+   "128 emiten",
+   "−Rp217 M",
+   "5 hari · −2,9%"
+  ],
+  [
+   "BY",
+   "DS",
+   "Energi",
+   "91 emiten",
+   "−Rp247 M",
+   "5 hari · −2,3%"
+  ],
+  [
+   "DC",
+   "BE",
+   "Teknologi",
+   "39 emiten",
+   "−Rp359 M",
+   "5 hari · −5,1%"
+  ],
+  [
+   "BR",
+   "TL",
+   "Infrastruktur",
+   "70 emiten",
+   "−Rp719 M",
+   "5 hari · +1,9%"
+  ],
+  [
+   "BB",
+   "BB",
+   "Keuangan",
+   "108 emiten",
+   "−Rp1,2 T",
+   "5 hari · +0,1%"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "",
+ "note": "Arus asing bersih per sektor dalam 5 hari bursa terakhir (17 Nov – 23 Nov 2026). Perubahan harga = rata-rata tertimbang kapitalisasi saham sektor, bukan indeks sektor resmi. Peta sektor 1 hari ada di Market Pulse."
+}
