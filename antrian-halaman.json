@@ -164,12 +164,15 @@
   "jenis": "kartuSaham",
   "sumberId": "kartu-SMIL-2026-11-23",
   "jadwal": "2026-11-24T07:45:00.000Z",
-  "status": "baru",
+  "status": "tayang",
   "caption": "🔎 Ringkasan Cepat SMIL · Selasa, 24 November 2026\n\nSMIL · Sarana Mitra Luas Tbk.\n\nBisnis membaik, harga bergerak datar, volume sekitar rata-rata.\nSejak penutupan 20 Nov: belum ada perubahan berarti pada harga, volume, dan arus asing.\n\nYang baru berubah:\n• Laba bersih naik 82% (12 bulan hingga Q2 2026 dibanding 2025)\n\nBukti dan risiko:\n✅ Laba bersih naik 82% (Rp66 M → Rp120 M), marjin bersih naik dari 16,1% ke 24%.\n✅ DER 0,50× dan tidak ada tahun rugi dalam 5 periode.\n⚠️ PBV 4,42× di atas median historisnya 2,36×.\n⚠️ Laba dibandingkan antara 12 bulan hingga Q2 2026 dan tahun 2025, bukan kuartal yang sama; kesimpulan bisnis perlu dibatasi.\n\nHarga 5,5% di bawah puncak 20 sesi.\nPantau: apakah harga menutup di atas puncak 20 sesi Rp436 (3 Nov) dengan volume 5 sesi ≥ 1,2× rata-rata 20 sesi sebelumnya.\nEvaluasi ulang: jika harga menutup di bawah MA20 Rp412 per 23 Nov.\n\nData: harga 23 Nov 2026 · laporan 12 bulan hingga Q2 2026\nSumber: harga dan volume BEI, kepemilikan KSEI, laporan keuangan; diolah JOY Capital Market.\nBahan riset dan edukasi, bukan ajakan beli atau jual.\n\n#SahamIndonesia #SMIL #AnalisaSaham",
   "komentar": "Ringkasan lengkap SMIL (harga, fundamental, kepemilikan, grafik): https://saham.ijoy.co.id/?saham=SMIL&utm_source=facebook&utm_medium=social&utm_campaign=kartu-saham&utm_content=jelasberita_SMIL_2026-11-23#ringkasan\n\nData dan edukasi, bukan ajakan membeli atau menjual.",
   "berkas": "halaman/2026-11-24/jelasberita-03.jpg",
   "dibuat": "2026-11-24T00:39:51.588Z",
-  "alt": "Ringkasan Cepat SMIL. Bisnis membaik, harga bergerak datar, volume sekitar rata-rata."
+  "alt": "Ringkasan Cepat SMIL. Bisnis membaik, harga bergerak datar, volume sekitar rata-rata.",
+  "fbId": "705420199566762_1454692863488479",
+  "tayangAt": "2026-11-24T08:11:03.061Z",
+  "komentar_ok": true
  },
  {
   "id": "2026-11-24_jelasberita_04",
