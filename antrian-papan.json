@@ -37,7 +37,7 @@
    "slide1_sorotan.png",
    "slide2_daftar.png"
   ],
-  "status": "baru",
+  "status": "kedaluwarsa",
   "dibuat": "2026-11-23T05:44:38.605Z"
  },
  {
@@ -50,7 +50,7 @@
    "slide1_sorotan.png",
    "slide2_daftar.png"
   ],
-  "status": "baru",
+  "status": "kedaluwarsa",
   "dibuat": "2026-11-23T05:44:38.605Z"
  },
  {
@@ -63,7 +63,7 @@
    "slide1_sorotan.png",
    "slide2_daftar.png"
   ],
-  "status": "baru",
+  "status": "kedaluwarsa",
   "dibuat": "2026-11-23T05:44:38.605Z"
  },
  {
@@ -87,7 +87,7 @@
   "files": [
    "slide1_daftar.png"
   ],
-  "status": "baru",
+  "status": "diganti",
   "dibuat": "2026-11-23T05:44:38.605Z"
  },
  {
@@ -99,8 +99,11 @@
   "files": [
    "slide1_daftar.png"
   ],
-  "status": "baru",
-  "dibuat": "2026-11-23T21:59:38.268Z"
+  "status": "tayang",
+  "dibuat": "2026-11-23T21:59:38.268Z",
+  "tayangAt": "2026-11-24T00:39:43.877Z",
+  "fbId": "183161251789465_1830195839109784",
+  "komentar": true
  },
  {
   "id": "2026-11-23_kg",
