@@ -1,16 +1,25 @@
 {
  "edukasi": {
   "edu-apa-itu-ihsg-lq45-idx30-01": "2026-11-23",
-  "edu-apa-itu-saham-01": "2026-11-23"
+  "edu-apa-itu-saham-01": "2026-11-23",
+  "edu-apa-itu-saham-hsc-01": "2026-11-24",
+  "edu-arti-per-pbv-roe-der-01": "2026-11-24"
  },
  "ringkasan": {
   "aktif-IDXBASIC-2026-11-20": "jelasberita",
   "f-mc-IDXENERGY-30oktober2026": "jelasberita",
   "f-pbv-IDXENERGY-30oktober2026": "monas",
-  "gambaran-2026-11-20": "monas"
+  "gambaran-2026-11-20": "monas",
+  "gambaran-2026-11-23": "jelasberita",
+  "f-pbv-IDXNONCYC-30oktober2026": "jelasberita",
+  "sektor-2026-11-23": "jelasberita",
+  "pemegang-kurang-2026-11-23": "monas",
+  "lonjakan-2026-11-23": "monas"
  },
  "kartu": {
   "BBTN": "2026-11-23",
-  "ADRO": "2026-11-23"
+  "ADRO": "2026-11-23",
+  "SMIL": "2026-11-24",
+  "ADMR": "2026-11-24"
  }
 }
