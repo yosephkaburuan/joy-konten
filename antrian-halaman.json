@@ -198,12 +198,15 @@
   "jenis": "ringkasan",
   "sumberId": "sektor-2026-11-23",
   "jadwal": "2026-11-24T14:30:00.000Z",
-  "status": "baru",
+  "status": "tayang",
   "caption": "🧭 Sektor Paling Kuat dan Paling Lemah · Senin, 23 November 2026\n\nPerubahan harga rata-rata per sektor pada penutupan Senin, 23 November 2026, tiga sektor tertinggi dan tiga terendah:\n▲ Properti · +13,6% · nilai transaksi Rp138 M\n▲ Energi · +8,8% · nilai transaksi Rp1,77 T\n▲ Bahan Baku · +8,2% · nilai transaksi Rp2,11 T\n▼ Perindustrian · +1,4% · nilai transaksi Rp594 M\n▼ Keuangan · +1,2% · nilai transaksi Rp2,95 T\n▼ Konsumer Primer · +1,0% · nilai transaksi Rp618 M\n\nArtinya: angka sektor dihitung JOY dari rata-rata perubahan harga saham likuid di sektor itu, ditimbang nilai transaksi. Ini ukuran JOY, bukan indeks sektoral resmi BEI.\n\nRingkasan lengkap hari bursa ini ada di komentar pertama 👇\n\n#RotasiSektor #SahamIndonesia #BEI\n\nSumber: data bursa (Ringkasan Saham BEI) diolah JOY. Data per 23 Nov 2026. Data dan edukasi, bukan ajakan membeli atau menjual.",
   "komentar": "Ringkasan lengkap Senin, 23 November 2026 (saham naik dan turun, arus asing, konglomerasi, pemegang 5%): https://saham.ijoy.co.id/harian/2026-11-23?utm_source=facebook&utm_medium=social&utm_campaign=harian-sektor&utm_content=jelasberita_sektor_2026-11-23\n\nData dan edukasi, bukan ajakan membeli atau menjual.",
   "berkas": "halaman/2026-11-24/jelasberita-05.jpg",
   "dibuat": "2026-11-24T00:39:51.588Z",
-  "alt": "Sektor Paling Kuat dan Paling Lemah. Penutupan Senin, 23 November 2026. Properti 6 saham likuid +13,6%; Energi 21 saham likuid +8,8%; Bahan Baku 16 saham likuid +8,2%; Perindustrian 7 saham likuid +1,4%; Keuangan 7 saham likuid +1,2%; Konsumer Primer 16 saham likuid +1,0%"
+  "alt": "Sektor Paling Kuat dan Paling Lemah. Penutupan Senin, 23 November 2026. Properti 6 saham likuid +13,6%; Energi 21 saham likuid +8,8%; Bahan Baku 16 saham likuid +8,2%; Perindustrian 7 saham likuid +1,4%; Keuangan 7 saham likuid +1,2%; Konsumer Primer 16 saham likuid +1,0%",
+  "fbId": "705420199566762_1455000846791014",
+  "tayangAt": "2026-11-24T14:41:03.458Z",
+  "komentar_ok": true
  },
  {
   "id": "2026-11-24_monas_01",
@@ -263,11 +266,14 @@
   "jenis": "ringkasan",
   "sumberId": "lonjakan-2026-11-23",
   "jadwal": "2026-11-24T14:30:00.000Z",
-  "status": "baru",
+  "status": "tayang",
   "caption": "⚡ Lonjakan Nilai Transaksi · Senin, 23 November 2026\n\nSaham yang nilai transaksinya paling jauh di atas rata-rata 20 hari bursa sebelumnya, pada Senin, 23 November 2026:\n1. FOLK Multi Garam Utama · 4,7× rata-rata · harga Rp108 (+8,0%) · nilai Rp63,4 M\n2. CDIA Chandra Daya Investasi · 4,3× rata-rata · harga Rp386 (+24,5%) · nilai Rp60,0 M\n3. MBMA Merdeka Battery Materials · 3,5× rata-rata · harga Rp360 (+4,7%) · nilai Rp184 M\n4. BREN Barito Renewables Energy · 3,3× rata-rata · harga Rp2.370 (+8,2%) · nilai Rp177 M\n5. TRIN Perintis Triniti Properti · 3,0× rata-rata · harga Rp198 (+34,7%) · nilai Rp53,0 M\n\nArtinya: lonjakan transaksi bisa karena berita, aksi korporasi, atau satu transaksi besar. Lonjakan sendiri belum menunjukkan arah harga.\n\nRingkasan lengkap hari bursa ini ada di komentar pertama 👇\n\n#LonjakanTransaksi #SahamIndonesia #BEI\n\nSumber: data bursa (Ringkasan Saham BEI) diolah JOY. Data per 23 Nov 2026. Data dan edukasi, bukan ajakan membeli atau menjual.",
   "komentar": "Ringkasan lengkap Senin, 23 November 2026 (saham naik dan turun, arus asing, konglomerasi, pemegang 5%): https://saham.ijoy.co.id/harian/2026-11-23?utm_source=facebook&utm_medium=social&utm_campaign=harian-lonjakan&utm_content=monas_lonjakan_2026-11-23\n\nData dan edukasi, bukan ajakan membeli atau menjual.",
   "berkas": "halaman/2026-11-24/monas-04.jpg",
   "dibuat": "2026-11-24T00:39:51.588Z",
-  "alt": "Lonjakan Nilai Transaksi. Penutupan Senin, 23 November 2026. FOLK Multi Garam Utama 4,7×; CDIA Chandra Daya Investasi 4,3×; MBMA Merdeka Battery Materials 3,5×; BREN Barito Renewables Energy 3,3×; TRIN Perintis Triniti Properti 3,0×"
+  "alt": "Lonjakan Nilai Transaksi. Penutupan Senin, 23 November 2026. FOLK Multi Garam Utama 4,7×; CDIA Chandra Daya Investasi 4,3×; MBMA Merdeka Battery Materials 3,5×; BREN Barito Renewables Energy 3,3×; TRIN Perintis Triniti Properti 3,0×",
+  "fbId": "739273872776036_1491384116429095",
+  "tayangAt": "2026-11-24T14:41:03.458Z",
+  "komentar_ok": true
  }
 ]
