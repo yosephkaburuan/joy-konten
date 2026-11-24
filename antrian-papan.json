@@ -178,7 +178,10 @@
   "files": [
    "slide1_daftar.png"
   ],
-  "status": "baru",
-  "dibuat": "2026-11-23T21:59:38.268Z"
+  "status": "tayang",
+  "dibuat": "2026-11-23T21:59:38.268Z",
+  "tayangAt": "2026-11-24T03:06:47.408Z",
+  "fbId": "183161251789465_1830313465764688",
+  "komentar": true
  }
 ]
