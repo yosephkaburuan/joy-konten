@@ -7,7 +7,7 @@
 const fs=require('fs'),path=require('path');
 const ANTRIAN=process.env.ANTRIAN||'antrian-papan.json';
 const PAGE=process.env.FB_PAGE_ID||'',TOKEN=process.env.FB_PAGE_TOKEN||'';
-const VER=process.env.FB_API_VERSION||'v21.0';
+const VER=process.env.FB_API_VERSION||'v27.0';
 const GAP=+process.env.JEDA_MENIT||25;             /* jarak minimal antar kiriman */
 const MAXDAY=+process.env.MAKS_PER_HARI||12;       /* batas kiriman per hari */
 const MAXAGE=+process.env.MAX_UMUR_HARI||4;        /* kiriman lebih tua dari ini dibuang dari antrean */
@@ -50,7 +50,9 @@ async function tayang(item){
   const q=load(),now=new Date();
   /* buang yang sudah basi */
   q.forEach(x=>{if(x.status==='baru'&&(now-Date.parse(x.iso+'T00:00:00+07:00'))/864e5>(AGE[x.key]||MAXAGE)){x.status='kedaluwarsa';}});
-  const baru=q.filter(x=>x.status==='baru');
+  /* buang yang sudah diganti papan sejenis dengan data lebih baru, lalu dahulukan data terbaru */
+  q.forEach(x=>{if(x.status==='baru'&&q.some(y=>y!==x&&y.key===x.key&&y.iso>x.iso&&(y.status==='baru'||y.status==='tayang'))){x.status='diganti';}});
+  const baru=q.filter(x=>x.status==='baru').sort((a,b)=>b.iso.localeCompare(a.iso));
   if(!baru.length){console.log('antrean kosong, tidak ada yang ditayangkan');save(q);return;}
   if(!PAGE||!TOKEN){if(!UJI){console.log('FB_PAGE_ID / FB_PAGE_TOKEN belum dipasang: '+baru.length+' kiriman menunggu di antrean (belum tayang)');return;}}
   const h=wib(now).getUTCHours();
