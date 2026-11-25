@@ -6,7 +6,10 @@
   "edu-arti-per-pbv-roe-der-01": "2026-11-24",
   "edu-cara-melihat-pemegang-saham-01": "2026-11-25",
   "edu-cara-membaca-arus-dana-asing-01": "2026-11-25",
-  "edu-cara-membaca-moving-average-01": "2026-11-25"
+  "edu-cara-membaca-moving-average-01": "2026-11-25",
+  "edu-cara-membaca-pemegang-saham-di-atas-1-persen-01": "2026-11-26",
+  "edu-cara-membaca-skor-joy-01": "2026-11-26",
+  "edu-cara-membuka-rekening-saham-01": "2026-11-26"
  },
  "ringkasan": {
   "aktif-IDXBASIC-2026-11-20": "jelasberita",
@@ -23,7 +26,14 @@
   "sektor-2026-11-24": "jelasberita",
   "f-roe-IDXNONCYC-30oktober2026": "jelasberita",
   "lonjakan-2026-11-24": "monas",
-  "f-per-IDXFINANCE-30oktober2026": "monas"
+  "f-per-IDXFINANCE-30oktober2026": "monas",
+  "gambaran-2026-11-25": "jelasberita",
+  "naik-IDXCYCLIC-2026-11-25": "jelasberita",
+  "sektor-2026-11-25": "jelasberita",
+  "pemegang-kurang-2026-11-25": "jelasberita",
+  "lonjakan-2026-11-25": "monas",
+  "f-mc-IDXFINANCE-30oktober2026": "monas",
+  "asing-jual-2026-11-25": "monas"
  },
  "kartu": {
   "BBTN": "2026-11-23",
@@ -32,6 +42,9 @@
   "ADMR": "2026-11-24",
   "UNVR": "2026-11-25",
   "TPIA": "2026-11-25",
-  "BULL": "2026-11-25"
+  "BULL": "2026-11-25",
+  "MDIA": "2026-11-26",
+  "UVCR": "2026-11-26",
+  "ESSA": "2026-11-26"
  }
 }
