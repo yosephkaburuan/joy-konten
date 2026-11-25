@@ -385,12 +385,15 @@
   "jenis": "ringkasan",
   "sumberId": "sektor-2026-11-24",
   "jadwal": "2026-11-25T12:30:00.000Z",
-  "status": "baru",
+  "status": "tayang",
   "caption": "🧭 Sektor Paling Kuat dan Paling Lemah · Selasa, 24 November 2026\n\nPerubahan harga rata-rata per sektor pada penutupan Selasa, 24 November 2026, tiga sektor tertinggi dan tiga terendah:\n▲ Infrastruktur · +2,9% · nilai transaksi Rp885 M\n▲ Keuangan · +1,7% · nilai transaksi Rp3,51 T\n▲ Konsumer Primer · +1,4% · nilai transaksi Rp934 M\n▼ Energi · −1,0% · nilai transaksi Rp2,20 T\n▼ Konsumer Non-Primer · −2,0% · nilai transaksi Rp282 M\n▼ Bahan Baku · −2,3% · nilai transaksi Rp1,52 T\n\nArtinya: angka sektor dihitung JOY dari rata-rata perubahan harga saham likuid di sektor itu, ditimbang nilai transaksi. Ini ukuran JOY, bukan indeks sektoral resmi BEI.\n\nRingkasan lengkap hari bursa ini ada di komentar pertama 👇\n\n#RotasiSektor #SahamIndonesia #BEI\n\nSumber: data bursa (Ringkasan Saham BEI) diolah JOY. Data per 24 Nov 2026. Data dan edukasi, bukan ajakan membeli atau menjual.",
   "komentar": "Ringkasan lengkap Selasa, 24 November 2026 (saham naik dan turun, arus asing, konglomerasi, pemegang 5%): https://saham.ijoy.co.id/harian/2026-11-24?utm_source=facebook&utm_medium=social&utm_campaign=harian-sektor&utm_content=jelasberita_sektor_2026-11-24\n\nData dan edukasi, bukan ajakan membeli atau menjual.",
   "berkas": "halaman/2026-11-25/jelasberita-07.jpg",
   "dibuat": "2026-11-24T22:31:30.918Z",
-  "alt": "Sektor Paling Kuat dan Paling Lemah. Penutupan Selasa, 24 November 2026. Infrastruktur 7 saham likuid +2,9%; Keuangan 9 saham likuid +1,7%; Konsumer Primer 16 saham likuid +1,4%; Energi 23 saham likuid −1,0%; Konsumer Non-Primer 6 saham likuid −2,0%; Bahan Baku 17 saham likuid −2,3%"
+  "alt": "Sektor Paling Kuat dan Paling Lemah. Penutupan Selasa, 24 November 2026. Infrastruktur 7 saham likuid +2,9%; Keuangan 9 saham likuid +1,7%; Konsumer Primer 16 saham likuid +1,4%; Energi 23 saham likuid −1,0%; Konsumer Non-Primer 6 saham likuid −2,0%; Bahan Baku 17 saham likuid −2,3%",
+  "fbId": "705420199566762_1455951983362567",
+  "tayangAt": "2026-11-25T12:41:02.463Z",
+  "komentar_ok": true
  },
  {
   "id": "2026-11-25_jelasberita_08",
