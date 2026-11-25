@@ -1,0 +1,75 @@
+{
+ "board": "lonjakan",
+ "judul": "Lonjakan Transaksi",
+ "iso": "2026-11-25",
+ "asof": "Data per 25 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Saham yang transaksinya jauh di atas rata-rata.",
+ "cards": [
+  {
+   "l": "LONJAKAN TERBESAR",
+   "n": "MPXL",
+   "v": "15,0×"
+  },
+  {
+   "l": "TRANSAKSI TERBESAR",
+   "n": "BBCA",
+   "v": "Rp955 M"
+  },
+  {
+   "l": "NAIK TERTINGGI",
+   "n": "TMPO",
+   "v": "+9,9%"
+  },
+  {
+   "l": "TURUN TERDALAM",
+   "n": "MGLV",
+   "v": "−8,2%"
+  }
+ ],
+ "rows": [
+  [
+   "MP",
+   "MPXL MPX Logistics International",
+   "Transaksi Rp66 M · rata-rata 19 hari Rp4,4 M",
+   "15,0×",
+   "dari rata-rata",
+   "Harga −6,9%"
+  ],
+  [
+   "AS",
+   "ASGR Astra Graphia",
+   "Transaksi Rp29 M · rata-rata 19 hari Rp5,9 M",
+   "4,9×",
+   "dari rata-rata",
+   "Harga datar −0,4%"
+  ],
+  [
+   "TU",
+   "TUGU Asuransi Tugu Pratama Indonesia",
+   "Transaksi Rp10 M · rata-rata 19 hari Rp2,5 M",
+   "4,0×",
+   "dari rata-rata",
+   "Harga −6,4%"
+  ],
+  [
+   "MD",
+   "MDIA Intermedia Capital",
+   "Transaksi Rp32 M · rata-rata 19 hari Rp8,4 M",
+   "3,8×",
+   "dari rata-rata",
+   "Harga −1,6%"
+  ],
+  [
+   "KO",
+   "KOTA DMS Propertindo",
+   "Transaksi Rp157 M · rata-rata 19 hari Rp43 M",
+   "3,7×",
+   "dari rata-rata",
+   "Harga +6,8%"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "",
+ "note": "Nilai transaksi 25 Nov 2026 dibanding rata-rata hari bursa sebelumnya (≥2,5× dan ≥ Rp10 M). Transaksi ramai tidak menunjukkan arah harga; \"harga datar\" berarti perubahan harian di bawah 1,5%. Bukan ajakan membeli atau menjual."
+}
