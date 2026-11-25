@@ -1,0 +1,35 @@
+{
+ "board": "mv",
+ "judul": "Ownership Moves",
+ "iso": "2026-11-24",
+ "asof": "Data per 24 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Perubahan kepemilikan ≥5% terbaru yang signifikan.",
+ "cards": [],
+ "rows": [
+  [
+   "DSSA",
+   "PT DIAN SWASTATIKA SENTOSA TBK",
+   "Mengurangi 3,85 miliar lbr · ≈ Rp2,4 T",
+   "▼ Kurang",
+   "24 Nov"
+  ],
+  [
+   "SRIL",
+   "PT HUDDLESTON INDONESIA",
+   "Mengurangi 4,49 miliar lbr · ≈ Rp655 M",
+   "▼ Kurang",
+   "18 Nov"
+  ],
+  [
+   "CMNP",
+   "BP2S SG/BNP PARIBAS SINGAPORE BRANCH WEALTH MANAGEMENT",
+   "Mengurangi 390,0 jt lbr · ≈ Rp495 M",
+   "▼ Kurang",
+   "18 Nov"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "Perubahan",
+ "note": "+14 kejadian masuk/keluar daftar ≥5% ada di papan lengkap (belum tentu jual-beli)."
+}

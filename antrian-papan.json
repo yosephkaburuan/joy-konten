@@ -265,5 +265,20 @@
   "tayangAt": "2026-11-24T12:36:56.816Z",
   "fbId": "183161251789465_1830799999049368",
   "komentar": true
+ },
+ {
+  "id": "2026-11-24_mv",
+  "key": "mv",
+  "judul": "Ownership Moves",
+  "iso": "2026-11-24",
+  "dir": "papan/2026-11-24_mv",
+  "files": [
+   "slide1_daftar.png"
+  ],
+  "status": "tayang",
+  "dibuat": "2026-11-25T10:07:11.931Z",
+  "tayangAt": "2026-11-25T10:07:11.962Z",
+  "fbId": "183161251789465_1831948778934490",
+  "komentar": true
  }
 ]
