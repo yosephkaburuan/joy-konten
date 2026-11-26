@@ -9,7 +9,10 @@
   "edu-cara-membaca-moving-average-01": "2026-11-25",
   "edu-cara-membaca-pemegang-saham-di-atas-1-persen-01": "2026-11-26",
   "edu-cara-membaca-skor-joy-01": "2026-11-26",
-  "edu-cara-membuka-rekening-saham-01": "2026-11-26"
+  "edu-cara-membuka-rekening-saham-01": "2026-11-26",
+  "edu-cum-date-ex-date-dividen-01": "2026-11-27",
+  "edu-free-float-saham-01": "2026-11-27",
+  "edu-laporan-kepemilikan-saham-5-persen-01": "2026-11-27"
  },
  "ringkasan": {
   "aktif-IDXBASIC-2026-11-20": "jelasberita",
@@ -33,7 +36,14 @@
   "pemegang-kurang-2026-11-25": "jelasberita",
   "lonjakan-2026-11-25": "monas",
   "f-mc-IDXFINANCE-30oktober2026": "monas",
-  "asing-jual-2026-11-25": "monas"
+  "asing-jual-2026-11-25": "monas",
+  "gambaran-2026-11-26": "jelasberita",
+  "pemegang-kurang-2026-11-26": "jelasberita",
+  "sektor-2026-11-26": "jelasberita",
+  "naik-IDXBASIC-2026-11-26": "jelasberita",
+  "lonjakan-2026-11-26": "monas",
+  "f-roe-IDXENERGY-30oktober2026": "monas",
+  "asing-jual-2026-11-26": "monas"
  },
  "kartu": {
   "BBTN": "2026-11-23",
@@ -45,6 +55,9 @@
   "BULL": "2026-11-25",
   "MDIA": "2026-11-26",
   "UVCR": "2026-11-26",
-  "ESSA": "2026-11-26"
+  "ESSA": "2026-11-26",
+  "MIKA": "2026-11-27",
+  "MYOR": "2026-11-27",
+  "CUAN": "2026-11-27"
  }
 }
