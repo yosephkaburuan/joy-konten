@@ -606,12 +606,15 @@
   "jenis": "ringkasan",
   "sumberId": "pemegang-kurang-2026-11-25",
   "jadwal": "2026-11-26T14:30:00.000Z",
-  "status": "baru",
+  "status": "tayang",
   "caption": "🏦 Pemegang 5% Paling Banyak Mengurangi · Rabu, 25 November 2026\n\nPemegang saham di atas 5% yang paling besar nilainya ketika mengurangi lembar pada Selasa, 24 November 2026 (nilai perkiraan = jumlah lembar × harga penutupan):\n1. DSSA PT DIAN SWASTATIKA SENTOSA TBK · mengurangi 3,85 miliar lembar menjadi 16,18% · nilai perkiraan Rp2,29 T\n2. FILM PT SAMUEL SEKURITAS INDONESIA · mengurangi 75,9 juta lembar menjadi 9,29% · nilai perkiraan Rp19,9 M\n3. BKSL PT SAMUEL SEKURITAS INDONESIA · mengurangi 179,5 juta lembar menjadi 5,60% · nilai perkiraan Rp7,0 M\n4. OASA pemegang perorangan · mengurangi 22,8 juta lembar menjadi 30,03% · nilai perkiraan Rp3,6 M\n5. REAL PT ENAM BERLIAN SINERGI · mengurangi 50,0 juta lembar menjadi 44,46% · nilai perkiraan Rp1,4 M\n\nArtinya: laporan pemegang di atas 5% menunjukkan siapa yang menambah atau mengurangi kepemilikan. Itu belum tentu diikuti kenaikan atau penurunan harga, dan bisa juga berasal dari restrukturisasi atau perpindahan antar entitas yang sama.\n\nDetail tiap saham ada di komentar pertama 👇\n\n#PemegangSaham #KSEI #SahamIndonesia\n\nSumber: laporan kepemilikan pemegang di atas 5% (data JOY) dan harga penutupan BEI, diolah JOY. Data per 25 Nov 2026. Data dan edukasi, bukan ajakan membeli atau menjual.",
   "komentar": "Data lengkap dan detail tiap saham: https://saham.ijoy.co.id/?saham=DSSA&utm_source=facebook&utm_medium=social&utm_campaign=ringkasan-pemegang-kurang&utm_content=jelasberita_pemegang-kurang_2026-11-25#ringkasan\n\nData dan edukasi, bukan ajakan membeli atau menjual.",
   "berkas": "halaman/2026-11-26/jelasberita-08.jpg",
   "dibuat": "2026-11-25T22:31:26.992Z",
-  "alt": "Pemegang 5% Paling Banyak Mengurangi. Penutupan Rabu, 25 November 2026. DSSA PT DIAN SWASTATIKA SENTOSA TBK −3,85 miliar lembar; FILM PT SAMUEL SEKURITAS INDONESIA −75,9 juta lembar; BKSL PT SAMUEL SEKURITAS INDONESIA −179,5 juta lembar; OASA pemegang perorangan −22,8 juta lembar; REAL PT ENAM BERLIAN SINERGI −50,0 juta lembar"
+  "alt": "Pemegang 5% Paling Banyak Mengurangi. Penutupan Rabu, 25 November 2026. DSSA PT DIAN SWASTATIKA SENTOSA TBK −3,85 miliar lembar; FILM PT SAMUEL SEKURITAS INDONESIA −75,9 juta lembar; BKSL PT SAMUEL SEKURITAS INDONESIA −179,5 juta lembar; OASA pemegang perorangan −22,8 juta lembar; REAL PT ENAM BERLIAN SINERGI −50,0 juta lembar",
+  "fbId": "705420199566762_1457132333244532",
+  "tayangAt": "2026-11-26T14:41:05.213Z",
+  "komentar_ok": true
  },
  {
   "id": "2026-11-26_monas_01",
@@ -688,11 +691,14 @@
   "jenis": "ringkasan",
   "sumberId": "asing-jual-2026-11-25",
   "jadwal": "2026-11-26T14:30:00.000Z",
-  "status": "baru",
+  "status": "tayang",
   "caption": "🌏 Asing Paling Banyak Jual · Rabu, 25 November 2026\n\nSaham dengan net jual asing terbesar pada Rabu, 25 November 2026 (estimasi, nilai transaksi minimal Rp10,0 M):\n1. BBRI Bank Rakyat Indonesia (Persero) · net jual asing Rp219 M · harga Rp3.070 (−1,0%)\n2. TLKM Telkom Indonesia (Persero) · net jual asing Rp131 M · harga Rp2.010 (−3,4%)\n3. BRMS Bumi Resources Minerals · net jual asing Rp90,2 M · harga Rp270 (−6,9%)\n4. BRPT Barito Pacific · net jual asing Rp46,4 M · harga Rp635 (−6,6%)\n5. TINS Timah · net jual asing Rp44,7 M · harga Rp2.940 (−6,1%)\n\nArtinya: net asing = lembar net × harga penutupan, jadi hanya perkiraan. \"Asing\" adalah kategori rekening, dan bisa ikut penyeimbangan indeks, bukan semata kondisi perusahaan.\n\nRingkasan lengkap hari bursa ini ada di komentar pertama 👇\n\n#ArusAsing #NetJualAsing #SahamIndonesia\n\nSumber: data bursa (Ringkasan Saham BEI) diolah JOY. Data per 25 Nov 2026. Data dan edukasi, bukan ajakan membeli atau menjual.",
   "komentar": "Ringkasan lengkap Rabu, 25 November 2026 (saham naik dan turun, arus asing, konglomerasi, pemegang 5%): https://saham.ijoy.co.id/harian/2026-11-25?utm_source=facebook&utm_medium=social&utm_campaign=harian-asing-jual&utm_content=monas_asing-jual_2026-11-25\n\nData dan edukasi, bukan ajakan membeli atau menjual.",
   "berkas": "halaman/2026-11-26/monas-05.jpg",
   "dibuat": "2026-11-25T22:31:26.992Z",
-  "alt": "Asing Paling Banyak Jual. Penutupan Rabu, 25 November 2026. BBRI Bank Rakyat Indonesia (Persero) −Rp219 M; TLKM Telkom Indonesia (Persero) −Rp131 M; BRMS Bumi Resources Minerals −Rp90,2 M; BRPT Barito Pacific −Rp46,4 M; TINS Timah −Rp44,7 M"
+  "alt": "Asing Paling Banyak Jual. Penutupan Rabu, 25 November 2026. BBRI Bank Rakyat Indonesia (Persero) −Rp219 M; TLKM Telkom Indonesia (Persero) −Rp131 M; BRMS Bumi Resources Minerals −Rp90,2 M; BRPT Barito Pacific −Rp46,4 M; TINS Timah −Rp44,7 M",
+  "fbId": "739273872776036_1493512759549564",
+  "tayangAt": "2026-11-26T14:41:05.213Z",
+  "komentar_ok": true
  }
 ]
