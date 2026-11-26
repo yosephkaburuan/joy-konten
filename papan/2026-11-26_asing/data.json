@@ -1,0 +1,79 @@
+{
+ "board": "asing",
+ "judul": "Arus Asing Saham",
+ "iso": "2026-11-26",
+ "asof": "Data per 26 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Saham yang dibeli atau dijual asing dalam 5 hari bursa terakhir.",
+ "cards": [
+  {
+   "l": "NET BELI TERBESAR",
+   "n": "BBCA",
+   "v": "+Rp846 M"
+  },
+  {
+   "l": "NET JUAL TERBESAR",
+   "n": "TLKM",
+   "v": "−Rp526 M"
+  },
+  {
+   "l": "BELI BERUNTUN",
+   "n": "PWON",
+   "v": "7 hari"
+  },
+  {
+   "l": "JUAL BERUNTUN",
+   "n": "SMDR",
+   "v": "22 hari"
+  }
+ ],
+ "rows": [
+  [
+   "BB",
+   "BBCA Bank Central Asia",
+   "26 Nov +Rp281 M · 20 hari +Rp2,5 T",
+   "+Rp846 M",
+   "5 hari",
+   "4 hari beruntun",
+   "Harga +4,4%"
+  ],
+  [
+   "AM",
+   "AMRT Sumber Alfaria Trijaya",
+   "26 Nov +Rp22 M · 20 hari +Rp20 M",
+   "+Rp94 M",
+   "5 hari",
+   "4 hari beruntun",
+   "Harga −3,7%"
+  ],
+  [
+   "AN",
+   "ANTM Aneka Tambang",
+   "26 Nov +Rp11 M · 20 hari −Rp294 M",
+   "+Rp89 M",
+   "5 hari",
+   "Harga +1,1%"
+  ],
+  [
+   "AM",
+   "AMMN Amman Mineral Internasional",
+   "26 Nov +Rp19 M · 20 hari −Rp56 M",
+   "+Rp58 M",
+   "5 hari",
+   "3 hari beruntun",
+   "Harga +2,2%"
+  ],
+  [
+   "PW",
+   "PWON Pakuwon Jati",
+   "26 Nov +Rp6,5 M · 20 hari +Rp45 M",
+   "+Rp44 M",
+   "5 hari",
+   "7 hari beruntun",
+   "Harga +10,0%"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "Net beli",
+ "note": "Net beli asing terbesar dalam 5 hari bursa terakhir (20 Nov – 26 Nov 2026). Net asing = lembar net × harga penutupan (estimasi). Hanya saham dengan transaksi rata-rata ≥ Rp5 M per hari. Bukan ajakan membeli atau menjual."
+}

@@ -1,0 +1,75 @@
+{
+ "board": "lonjakan",
+ "judul": "Lonjakan Transaksi",
+ "iso": "2026-11-26",
+ "asof": "Data per 26 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Saham yang transaksinya jauh di atas rata-rata.",
+ "cards": [
+  {
+   "l": "LONJAKAN TERBESAR",
+   "n": "NASI",
+   "v": "5,9×"
+  },
+  {
+   "l": "TRANSAKSI TERBESAR",
+   "n": "BBCA",
+   "v": "Rp1,3 T"
+  },
+  {
+   "l": "NAIK TERTINGGI",
+   "n": "TOBA",
+   "v": "+24,8%"
+  },
+  {
+   "l": "TURUN TERDALAM",
+   "n": "MGLV",
+   "v": "−9,8%"
+  }
+ ],
+ "rows": [
+  [
+   "NA",
+   "NASI Wahana Inti Makmur",
+   "Transaksi Rp15 M · rata-rata 19 hari Rp2,6 M",
+   "5,9×",
+   "dari rata-rata",
+   "Harga +16,2%"
+  ],
+  [
+   "IR",
+   "IRSX Folago Global Nusantara",
+   "Transaksi Rp60 M · rata-rata 19 hari Rp11 M",
+   "5,6×",
+   "dari rata-rata",
+   "Harga +22,7%"
+  ],
+  [
+   "KD",
+   "KDTN Puri Sentul Permai",
+   "Transaksi Rp11 M · rata-rata 19 hari Rp2,6 M",
+   "4,2×",
+   "dari rata-rata",
+   "Harga +8,5%"
+  ],
+  [
+   "CD",
+   "CDIA Chandra Daya Investasi",
+   "Transaksi Rp106 M · rata-rata 19 hari Rp27 M",
+   "3,9×",
+   "dari rata-rata",
+   "Harga +6,4%"
+  ],
+  [
+   "BS",
+   "BSSR Baramulti Suksessarana",
+   "Transaksi Rp16 M · rata-rata 19 hari Rp4,2 M",
+   "3,7×",
+   "dari rata-rata",
+   "Harga datar −0,4%"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "",
+ "note": "Nilai transaksi 26 Nov 2026 dibanding rata-rata hari bursa sebelumnya (≥2,5× dan ≥ Rp10 M). Transaksi ramai tidak menunjukkan arah harga; \"harga datar\" berarti perubahan harian di bawah 1,5%. Bukan ajakan membeli atau menjual."
+}

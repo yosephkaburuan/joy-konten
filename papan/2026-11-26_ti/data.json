@@ -1,0 +1,44 @@
+{
+ "board": "ti",
+ "judul": "Trading Idea JOY",
+ "iso": "2026-11-26",
+ "asof": "Sesi Jumat, 27 November 2026 · data penutupan 26 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Sesi Jumat, 27 November 2026 · data penutupan 26 Nov 2026",
+ "cards": [],
+ "rows": [
+  [
+   "BUY",
+   "UNVR",
+   "▲ 2,4%",
+   "Beli 1.630–1.650"
+  ],
+  [
+   "BUY",
+   "MYOR",
+   "▲ 3,4%",
+   "Beli 1.515–1.540"
+  ],
+  [
+   "BUY",
+   "BBCA",
+   "▲ 3,4%",
+   "Beli 5.800–5.900"
+  ],
+  [
+   "BUY",
+   "ASII",
+   "▲ 4%",
+   "Beli 5.575–5.675"
+  ],
+  [
+   "BUY",
+   "IRSX",
+   "▲ 9,7%",
+   "Beli 212–222"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "",
+ "note": ""
+}
