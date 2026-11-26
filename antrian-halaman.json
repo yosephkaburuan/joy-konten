@@ -504,12 +504,15 @@
   "jenis": "ringkasan",
   "sumberId": "gambaran-2026-11-25",
   "jadwal": "2026-11-26T02:30:00.000Z",
-  "status": "baru",
+  "status": "tayang",
   "caption": "📊 Gambaran Pasar Hari Ini · Rabu, 25 November 2026\n\nIHSG ditutup turun 0,84% di 5.198 pada Rabu, 25 November 2026. Dari 834 saham yang diperdagangkan: 194 naik, 453 turun, 187 tidak berubah. Total nilai transaksi Rp7,12 T. Asing net jual Rp314 M (estimasi).\n\nArtinya: jumlah saham naik dan turun menunjukkan seberapa luas pergerakan pasar. Indeks bisa naik walau lebih banyak saham turun, bila saham besar yang naik. Net asing dihitung dari lembar net × harga penutupan, sehingga hanya perkiraan.\n\nRingkasan lengkap hari bursa ini ada di komentar pertama 👇\n\n#SahamIndonesia #BEI #PasarModal\n\nSumber: data bursa (Ringkasan Saham dan Ringkasan Indeks BEI) diolah JOY. Data per 25 Nov 2026. Data dan edukasi, bukan ajakan membeli atau menjual.",
   "komentar": "Ringkasan lengkap Rabu, 25 November 2026 (saham naik dan turun, arus asing, konglomerasi, pemegang 5%): https://saham.ijoy.co.id/harian/2026-11-25?utm_source=facebook&utm_medium=social&utm_campaign=harian-gambaran&utm_content=jelasberita_gambaran_2026-11-25\n\nData dan edukasi, bukan ajakan membeli atau menjual.",
   "berkas": "halaman/2026-11-26/jelasberita-02.jpg",
   "dibuat": "2026-11-25T22:31:26.992Z",
-  "alt": "Gambaran Pasar Hari Ini. Penutupan Rabu, 25 November 2026. IHSG ditutup di 5.198 −0,84%; 194 saham naik; 453 saham turun; 187 tidak berubah; Rp7,12 T total nilai transaksi; Rp314 M net jual asing (estimasi)"
+  "alt": "Gambaran Pasar Hari Ini. Penutupan Rabu, 25 November 2026. IHSG ditutup di 5.198 −0,84%; 194 saham naik; 453 saham turun; 187 tidak berubah; Rp7,12 T total nilai transaksi; Rp314 M net jual asing (estimasi)",
+  "fbId": "705420199566762_1456563426634756",
+  "tayangAt": "2026-11-26T02:41:03.472Z",
+  "komentar_ok": true
  },
  {
   "id": "2026-11-26_jelasberita_03",
