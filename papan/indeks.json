@@ -1,51 +1,11 @@
 [
  {
-  "key": "ti",
-  "judul": "Trading Idea JOY",
+  "key": "mv",
+  "judul": "Ownership Moves",
   "iso": "2026-11-25",
-  "dir": "papan/2026-11-25_ti",
+  "dir": "papan/2026-11-25_mv",
   "files": [
    "slide1_daftar.png"
-  ]
- },
- {
-  "key": "kg",
-  "judul": "Konglo Market Board",
-  "iso": "2026-11-25",
-  "dir": "papan/2026-11-25_kg",
-  "files": [
-   "slide1_sorotan.png",
-   "slide2_daftar.png"
-  ]
- },
- {
-  "key": "asing",
-  "judul": "Arus Asing Saham",
-  "iso": "2026-11-25",
-  "dir": "papan/2026-11-25_asing",
-  "files": [
-   "slide1_sorotan.png",
-   "slide2_daftar.png"
-  ]
- },
- {
-  "key": "sektor",
-  "judul": "Rotasi Sektor",
-  "iso": "2026-11-25",
-  "dir": "papan/2026-11-25_sektor",
-  "files": [
-   "slide1_sorotan.png",
-   "slide2_daftar.png"
-  ]
- },
- {
-  "key": "lonjakan",
-  "judul": "Lonjakan Transaksi",
-  "iso": "2026-11-25",
-  "dir": "papan/2026-11-25_lonjakan",
-  "files": [
-   "slide1_sorotan.png",
-   "slide2_daftar.png"
   ]
  }
 ]
