@@ -589,12 +589,15 @@
   "jenis": "ringkasan",
   "sumberId": "sektor-2026-11-25",
   "jadwal": "2026-11-26T12:30:00.000Z",
-  "status": "baru",
+  "status": "tayang",
   "caption": "🧭 Sektor Paling Kuat dan Paling Lemah · Rabu, 25 November 2026\n\nPerubahan harga rata-rata per sektor pada penutupan Rabu, 25 November 2026, tiga sektor tertinggi dan tiga terendah:\n▲ Konsumer Non-Primer · +3,2% · nilai transaksi Rp265 M\n▲ Perindustrian · 0,0% · nilai transaksi Rp355 M\n▲ Keuangan · −0,1% · nilai transaksi Rp2,21 T\n▼ Energi · −2,3% · nilai transaksi Rp922 M\n▼ Infrastruktur · −3,3% · nilai transaksi Rp615 M\n▼ Bahan Baku · −4,3% · nilai transaksi Rp1,10 T\n\nArtinya: angka sektor dihitung JOY dari rata-rata perubahan harga saham likuid di sektor itu, ditimbang nilai transaksi. Ini ukuran JOY, bukan indeks sektoral resmi BEI.\n\nRingkasan lengkap hari bursa ini ada di komentar pertama 👇\n\n#RotasiSektor #SahamIndonesia #BEI\n\nSumber: data bursa (Ringkasan Saham BEI) diolah JOY. Data per 25 Nov 2026. Data dan edukasi, bukan ajakan membeli atau menjual.",
   "komentar": "Ringkasan lengkap Rabu, 25 November 2026 (saham naik dan turun, arus asing, konglomerasi, pemegang 5%): https://saham.ijoy.co.id/harian/2026-11-25?utm_source=facebook&utm_medium=social&utm_campaign=harian-sektor&utm_content=jelasberita_sektor_2026-11-25\n\nData dan edukasi, bukan ajakan membeli atau menjual.",
   "berkas": "halaman/2026-11-26/jelasberita-07.jpg",
   "dibuat": "2026-11-25T22:31:26.992Z",
-  "alt": "Sektor Paling Kuat dan Paling Lemah. Penutupan Rabu, 25 November 2026. Konsumer Non-Primer 9 saham likuid +3,2%; Perindustrian 5 saham likuid 0,0%; Keuangan 9 saham likuid −0,1%; Energi 21 saham likuid −2,3%; Infrastruktur 8 saham likuid −3,3%; Bahan Baku 17 saham likuid −4,3%"
+  "alt": "Sektor Paling Kuat dan Paling Lemah. Penutupan Rabu, 25 November 2026. Konsumer Non-Primer 9 saham likuid +3,2%; Perindustrian 5 saham likuid 0,0%; Keuangan 9 saham likuid −0,1%; Energi 21 saham likuid −2,3%; Infrastruktur 8 saham likuid −3,3%; Bahan Baku 17 saham likuid −4,3%",
+  "fbId": "705420199566762_1457027706588328",
+  "tayangAt": "2026-11-26T12:41:07.315Z",
+  "komentar_ok": true
  },
  {
   "id": "2026-11-26_jelasberita_08",
