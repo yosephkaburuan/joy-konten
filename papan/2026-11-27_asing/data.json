@@ -1,0 +1,79 @@
+{
+ "board": "asing",
+ "judul": "Arus Asing Saham",
+ "iso": "2026-11-27",
+ "asof": "Data per 27 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Saham yang dibeli atau dijual asing dalam 5 hari bursa terakhir.",
+ "cards": [
+  {
+   "l": "NET BELI TERBESAR",
+   "n": "BBCA",
+   "v": "+Rp1,4 T"
+  },
+  {
+   "l": "NET JUAL TERBESAR",
+   "n": "TLKM",
+   "v": "−Rp386 M"
+  },
+  {
+   "l": "BELI BERUNTUN",
+   "n": "PWON",
+   "v": "8 hari"
+  },
+  {
+   "l": "JUAL BERUNTUN",
+   "n": "SMRA",
+   "v": "20 hari"
+  }
+ ],
+ "rows": [
+  [
+   "BB",
+   "BBCA Bank Central Asia",
+   "27 Nov +Rp251 M · 20 hari +Rp2,7 T",
+   "+Rp1,4 T",
+   "5 hari",
+   "5 hari beruntun",
+   "Harga +8,1%"
+  ],
+  [
+   "BM",
+   "BMRI Bank Mandiri (Persero)",
+   "27 Nov +Rp55 M · 20 hari −Rp250 M",
+   "+Rp119 M",
+   "5 hari",
+   "Harga +3,3%"
+  ],
+  [
+   "AM",
+   "AMRT Sumber Alfaria Trijaya",
+   "27 Nov +Rp8,5 M · 20 hari +Rp21 M",
+   "+Rp104 M",
+   "5 hari",
+   "5 hari beruntun",
+   "Harga −3,7%"
+  ],
+  [
+   "AS",
+   "ASII Astra International",
+   "27 Nov +Rp63 M · 20 hari +Rp1,0 T",
+   "+Rp81 M",
+   "5 hari",
+   "3 hari beruntun",
+   "Harga +8,5%"
+  ],
+  [
+   "AM",
+   "AMMN Amman Mineral Internasional",
+   "27 Nov +Rp24 M · 20 hari +Rp28 M",
+   "+Rp55 M",
+   "5 hari",
+   "4 hari beruntun",
+   "Harga +6,6%"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "Net beli",
+ "note": "Net beli asing terbesar dalam 5 hari bursa terakhir (23 Nov – 27 Nov 2026). Net asing = lembar net × harga penutupan (estimasi). Hanya saham dengan transaksi rata-rata ≥ Rp5 M per hari. Bukan ajakan membeli atau menjual."
+}

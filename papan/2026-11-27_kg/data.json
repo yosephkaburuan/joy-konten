@@ -1,0 +1,77 @@
+{
+ "board": "kg",
+ "judul": "Konglo Market Board",
+ "iso": "2026-11-27",
+ "asof": "Data per 27 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Pergerakan grup, saham unggulan, dan arus asing.",
+ "cards": [
+  {
+   "l": "TERKUAT",
+   "n": "Bakrie Group",
+   "v": "+7,32%"
+  },
+  {
+   "l": "TERLEMAH",
+   "n": "Kresna",
+   "v": "−3,11%"
+  },
+  {
+   "l": "KAPITALISASI",
+   "n": "Salim Group",
+   "v": "Rp979,9 T"
+  },
+  {
+   "l": "ASING MASUK",
+   "n": "Djarum / Hartono",
+   "v": "+Rp252,5 M"
+  }
+ ],
+ "rows": [
+  [
+   "Bakrie Group",
+   "13 emiten",
+   "+7,32%",
+   "+Rp229,1 M"
+  ],
+  [
+   "Happy Hapsoro",
+   "4 emiten",
+   "+3,66%",
+   "+Rp16,3 M"
+  ],
+  [
+   "Saratoga",
+   "4 emiten",
+   "+3,43%",
+   "+Rp13,6 M"
+  ],
+  [
+   "Barito Group",
+   "6 emiten",
+   "+3,23%",
+   "−Rp95,6 M"
+  ],
+  [
+   "Emtek Group",
+   "4 emiten",
+   "+1,99%",
+   "+Rp1,5 M"
+  ],
+  [
+   "MNC Group",
+   "8 emiten",
+   "+1,98%",
+   "+Rp2,1 M"
+  ],
+  [
+   "Adaro / Thohir",
+   "3 emiten",
+   "+1,89%",
+   "−Rp11,1 M"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "",
+ "note": "7 grup dengan kenaikan 1 hari tertinggi (minimal 3 saham). Rata-rata sederhana, bukan indeks resmi. Skor = rata-rata Skor JOY saham anggota. Wajah bulat = ilustrasi AI tokoh yang umum dikaitkan dengan grup, bukan foto resmi."
+}
