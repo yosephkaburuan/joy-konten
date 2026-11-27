@@ -542,7 +542,10 @@
    "slide1_sorotan.png",
    "slide2_daftar.png"
   ],
-  "status": "baru",
-  "dibuat": "2026-11-27T11:36:56.431Z"
+  "status": "tayang",
+  "dibuat": "2026-11-27T11:36:56.431Z",
+  "tayangAt": "2026-11-27T13:37:14.781Z",
+  "fbId": "183161251789465_1834698411992860",
+  "komentar": true
  }
 ]
