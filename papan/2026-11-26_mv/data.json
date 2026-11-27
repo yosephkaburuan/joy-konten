@@ -1,0 +1,35 @@
+{
+ "board": "mv",
+ "judul": "Ownership Moves",
+ "iso": "2026-11-26",
+ "asof": "Data per 26 Nov 2026",
+ "site": "https://saham.ijoy.co.id/",
+ "sub": "Perubahan kepemilikan ≥5% terbaru yang signifikan.",
+ "cards": [],
+ "rows": [
+  [
+   "DSSA",
+   "PT DIAN SWASTATIKA SENTOSA TBK",
+   "Mengurangi 3,85 miliar lbr · ≈ Rp2,4 T",
+   "▼ Kurang",
+   "24 Nov"
+  ],
+  [
+   "VKTR",
+   "PT BAKRIE CAPITAL INDONESIA",
+   "Mengurangi 1,50 miliar lbr · ≈ Rp426 M",
+   "▼ Kurang",
+   "20 Nov"
+  ],
+  [
+   "NSSS",
+   "PT SAMUEL SEKURITAS INDONESIA",
+   "Mengurangi 402,9 jt lbr · ≈ Rp276 M",
+   "▼ Kurang",
+   "23 Nov"
+  ]
+ ],
+ "secHead": "",
+ "selTab": "Perubahan",
+ "note": "+7 kejadian masuk/keluar daftar ≥5% ada di papan lengkap (belum tentu jual-beli)."
+}
