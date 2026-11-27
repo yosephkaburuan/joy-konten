@@ -12,7 +12,11 @@
   "edu-cara-membuka-rekening-saham-01": "2026-11-26",
   "edu-cum-date-ex-date-dividen-01": "2026-11-27",
   "edu-free-float-saham-01": "2026-11-27",
-  "edu-laporan-kepemilikan-saham-5-persen-01": "2026-11-27"
+  "edu-laporan-kepemilikan-saham-5-persen-01": "2026-11-27",
+  "edu-lot-fraksi-harga-ara-arb-01": "2026-11-28",
+  "edu-manajemen-risiko-saham-pemula-01": "2026-11-28",
+  "edu-pajak-dan-biaya-transaksi-saham-01": "2026-11-28",
+  "edu-right-issue-stock-split-buyback-01": "2026-11-28"
  },
  "ringkasan": {
   "aktif-IDXBASIC-2026-11-20": "jelasberita",
@@ -43,7 +47,15 @@
   "naik-IDXBASIC-2026-11-26": "jelasberita",
   "lonjakan-2026-11-26": "monas",
   "f-roe-IDXENERGY-30oktober2026": "monas",
-  "asing-jual-2026-11-26": "monas"
+  "asing-jual-2026-11-26": "monas",
+  "gambaran-2026-11-27": "jelasberita",
+  "pemegang-kurang-2026-11-27": "jelasberita",
+  "sektor-2026-11-27": "jelasberita",
+  "naik-IDXBASIC-2026-11-27": "jelasberita",
+  "lonjakan-2026-11-27": "jelasberita",
+  "f-mc-IDXNONCYC-30oktober2026": "monas",
+  "asing-beli-2026-11-27": "monas",
+  "f-mc-IDXBASIC-30oktober2026": "monas"
  },
  "kartu": {
   "BBTN": "2026-11-23",
@@ -58,6 +70,10 @@
   "ESSA": "2026-11-26",
   "MIKA": "2026-11-27",
   "MYOR": "2026-11-27",
-  "CUAN": "2026-11-27"
+  "CUAN": "2026-11-27",
+  "CSMI": "2026-11-28",
+  "DSSA": "2026-11-28",
+  "AKRA": "2026-11-28",
+  "INCO": "2026-11-28"
  }
 }
