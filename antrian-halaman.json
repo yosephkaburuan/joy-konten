@@ -810,12 +810,15 @@
   "jenis": "ringkasan",
   "sumberId": "sektor-2026-11-26",
   "jadwal": "2026-11-27T12:30:00.000Z",
-  "status": "baru",
+  "status": "tayang",
   "caption": "🧭 Sektor Paling Kuat dan Paling Lemah · Kamis, 26 November 2026\n\nPerubahan harga rata-rata per sektor pada penutupan Kamis, 26 November 2026, tiga sektor tertinggi dan tiga terendah:\n▲ Bahan Baku · +5,3% · nilai transaksi Rp1,37 T\n▲ Energi · +3,6% · nilai transaksi Rp1,65 T\n▲ Konsumer Primer · +2,0% · nilai transaksi Rp384 M\n▼ Keuangan · +1,0% · nilai transaksi Rp2,37 T\n▼ Infrastruktur · −0,2% · nilai transaksi Rp595 M\n▼ Konsumer Non-Primer · −1,9% · nilai transaksi Rp172 M\n\nArtinya: angka sektor dihitung JOY dari rata-rata perubahan harga saham likuid di sektor itu, ditimbang nilai transaksi. Ini ukuran JOY, bukan indeks sektoral resmi BEI.\n\nRingkasan lengkap hari bursa ini ada di komentar pertama 👇\n\n#RotasiSektor #SahamIndonesia #BEI\n\nSumber: data bursa (Ringkasan Saham BEI) diolah JOY. Data per 26 Nov 2026. Data dan edukasi, bukan ajakan membeli atau menjual.",
   "komentar": "Ringkasan lengkap Kamis, 26 November 2026 (saham naik dan turun, arus asing, konglomerasi, pemegang 5%): https://saham.ijoy.co.id/harian/2026-11-26?utm_source=facebook&utm_medium=social&utm_campaign=harian-sektor&utm_content=jelasberita_sektor_2026-11-26\n\nData dan edukasi, bukan ajakan membeli atau menjual.",
   "berkas": "halaman/2026-11-27/jelasberita-07.jpg",
   "dibuat": "2026-11-26T22:31:24.775Z",
-  "alt": "Sektor Paling Kuat dan Paling Lemah. Penutupan Kamis, 26 November 2026. Bahan Baku 15 saham likuid +5,3%; Energi 25 saham likuid +3,6%; Konsumer Primer 15 saham likuid +2,0%; Keuangan 7 saham likuid +1,0%; Infrastruktur 9 saham likuid −0,2%; Konsumer Non-Primer 8 saham likuid −1,9%"
+  "alt": "Sektor Paling Kuat dan Paling Lemah. Penutupan Kamis, 26 November 2026. Bahan Baku 15 saham likuid +5,3%; Energi 25 saham likuid +3,6%; Konsumer Primer 15 saham likuid +2,0%; Keuangan 7 saham likuid +1,0%; Infrastruktur 9 saham likuid −0,2%; Konsumer Non-Primer 8 saham likuid −1,9%",
+  "fbId": "705420199566762_1458098086481290",
+  "tayangAt": "2026-11-27T12:41:04.976Z",
+  "komentar_ok": true
  },
  {
   "id": "2026-11-27_jelasberita_08",
