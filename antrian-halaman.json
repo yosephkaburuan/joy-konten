@@ -1098,12 +1098,15 @@
   "jenis": "kartuSaham",
   "sumberId": "kartu-AKRA-2026-11-27",
   "jadwal": "2026-11-28T05:19:00.000Z",
-  "status": "baru",
+  "status": "tayang",
   "caption": "🔎 Ringkasan Cepat AKRA · Sabtu, 28 November 2026\n\nAKRA · AKR Corporindo Tbk.\n\nHarga mulai pulih, kinerja bisnis campuran, tetapi belum didukung volume.\nSejak penutupan 26 Nov: asing berbalik beli bersih · status harga berubah dari melemah menjadi mulai pulih · harga naik 2,4%.\n\nYang baru berubah:\n• Pemegang ≥5%: 1 menambah lembar, 0 mengurangi lembar (akumulasi awal) (aktivitas terakhir 26 Nov 2026)\n• Dalam daftar pemegang >1% (reksa dana, dana pensiun, asuransi): 2 institusi menambah jumlah saham, 1 institusi mengurangi jumlah saham (terbesar: PT Prudential Life Assurance, +12,2% lembar) (akhir Okt 2026 dibanding akhir Sep 2026)\n• Laba bersih naik 16% (12 bulan hingga Q2 2026 dibanding 2025)\n\nBukti dan risiko:\n✅ Laba bersih naik 15,7% (Rp2,5 T → Rp2,9 T).\n✅ Harga kembali di atas MA20 (Rp1.290) setelah turun 5,8% dalam 20 sesi.\n⚠️ Marjin bersih turun dari 5,4% ke 4,6%: kenaikan laba datang dari pendapatan, bukan efisiensi.\n⚠️ Asing jual bersih Rp26 M dalam 20 sesi (6,4% dari nilai transaksi).\n\nHarga 5,8% di bawah puncak 20 sesi.\nPantau: apakah harga menutup di atas puncak 20 sesi Rp1.375 (2 Nov) dengan volume 5 sesi ≥ 1,2× rata-rata 20 sesi sebelumnya.\nTinjau ulang: jika harga menutup di bawah MA20 Rp1.290 per 27 Nov.\n\nData: harga 27 Nov 2026 · laporan 12 bulan hingga Q2 2026 · kepemilikan >1% akhir Okt 2026\nSumber: harga dan volume BEI, kepemilikan KSEI, laporan keuangan; diolah JOY Capital Market.\nBahan riset dan edukasi, bukan ajakan beli atau jual.\n\n#SahamIndonesia #AKRA #AnalisaSaham",
   "komentar": "Ringkasan lengkap AKRA (harga, fundamental, kepemilikan, grafik): https://saham.ijoy.co.id/?saham=AKRA&utm_source=facebook&utm_medium=social&utm_campaign=kartu-saham&utm_content=monas_AKRA_2026-11-27#ringkasan\n\nData dan edukasi, bukan ajakan membeli atau menjual.",
   "berkas": "halaman/2026-11-28/monas-03.jpg",
   "dibuat": "2026-11-27T22:31:31.184Z",
-  "alt": "Ringkasan Cepat AKRA. Harga mulai pulih, kinerja bisnis campuran, tetapi belum didukung volume."
+  "alt": "Ringkasan Cepat AKRA. Harga mulai pulih, kinerja bisnis campuran, tetapi belum didukung volume.",
+  "fbId": "739273872776036_1495233932710780",
+  "tayangAt": "2026-11-28T05:41:05.104Z",
+  "komentar_ok": true
  },
  {
   "id": "2026-11-28_monas_04",
